@@ -1,6 +1,6 @@
 # Olive Motion
 
-An Indonesian online wedding invitation with motion. It opens on a cover with an arch portrait. An opening scene then pulls back over a garden landscape while palms and flowers grow in. Scroll-revealed sections follow for the couple, countdown, schedule, love story, gallery, live stream, gift accounts and guest wishes. The palette is ivory and olive.
+An Indonesian online wedding invitation with motion. It opens on a cover with an arch portrait. An opening scene then pulls back over a garden landscape while palms and flowers grow in, with the couple's names and a countdown at the top. Scroll-revealed sections follow for the couple, schedule, love story, gallery, live stream, gift accounts and guest wishes. The palette is ivory and olive.
 
 ## Run locally
 

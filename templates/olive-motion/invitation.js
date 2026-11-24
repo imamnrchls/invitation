@@ -50,7 +50,6 @@ const setPhoto = (selector, photo) => document.querySelectorAll(selector).forEac
   img.alt = photo.alt
 })
 setPhoto('[data-cover-photo]', wedding.coverPhoto ? { file: wedding.coverPhoto, alt: wedding.names } : photoAt(0))
-setPhoto('[data-feature-photo]', photoAt(0))
 setPhoto('[data-story-photo]', photoAt(1))
 setPhoto('[data-closing-photo]', photoAt(0))
 
@@ -259,9 +258,19 @@ function renderWishes() {
   list.replaceChildren()
   if (!wishes.length) list.append(el('li', { class: 'empty', text: 'Belum ada ucapan. Jadilah yang pertama.' }))
   for (const wish of wishes) {
-    const who = el('span', { class: 'who' }, wish.name)
-    who.append(icon('check', ''))
-    list.append(el('li', {}, who, el('p', { text: wish.wish }), el('time', { dateTime: new Date(wish.at).toISOString(), text: ago(wish.at) })))
+    const initials = wish.name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join('').toUpperCase()
+    const coming = wish.attendance === 'yes'
+    list.append(el('li', {},
+      el('span', { class: 'avatar', 'aria-hidden': 'true', text: initials }),
+      el('div', { class: 'wish-body' },
+        el('div', { class: 'who' },
+          el('strong', { text: wish.name }),
+          el('span', { class: 'badge ' + (coming ? 'yes' : 'no'), text: coming ? 'Hadir' : 'Tidak Hadir' }),
+        ),
+        el('p', { text: wish.wish }),
+        el('time', { dateTime: new Date(wish.at).toISOString(), text: ago(wish.at) }),
+      ),
+    ))
   }
 }
 
@@ -291,7 +300,6 @@ if (wedding.demo) {
 } else {
   form.hidden = true
   document.querySelector('#rsvp .tally').hidden = true
-  document.querySelector('#rsvp .count-line').hidden = true
   $('wishes').hidden = true
   const email = wedding.contactEmail?.trim()
   if (email && /^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(email)) {
