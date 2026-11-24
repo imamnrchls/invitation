@@ -39,18 +39,60 @@ body {
 .pill.small { min-height: 44px; font-size: .75rem; }
 
 .cover, .arch, .oval .photo { background: #eee6d4; }
-.cover-copy { padding-bottom: 14svh; }
+.cover:not(.leaving) { overflow-y: auto; }
+.cover-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.cover-copy {
+  gap: clamp(.25rem, 1svh, .55rem);
+  min-width: 0;
+  padding: 1rem 1.25rem clamp(1.25rem, 9svh, 5.5rem);
+}
+.guest { overflow-wrap: anywhere; }
 .arch { width: min(46vw, 210px, 29svh); border-color: var(--paper); outline: 1px solid #a88b52; box-shadow: 0 10px 24px #303b2829; }
 .arch.tall { width: min(58%, 240px); }
 .cover-forest { bottom: 0; height: 62%; opacity: .54; }
-.cover-flowers { bottom: -3%; height: 45%; }
-.layer i, .palm i { background-size: 100% 100%; }
+.cover-flowers { bottom: 0; height: 45%; }
+.hero { min-height: 0; }
+.layer i, .palm i { background-size: contain; }
 .far { bottom: 28%; aspect-ratio: 960 / 360; }
 .near { bottom: 18%; aspect-ratio: 960 / 385; }
 .forest { bottom: 0; aspect-ratio: 960 / 680; }
-.palm { bottom: 10%; width: 35%; aspect-ratio: 238 / 480; }
-.palm.left { left: -10%; }
-.palm.right { right: -10%; }
+.palm { bottom: 8%; width: 29%; max-height: 46%; aspect-ratio: 238 / 480; }
+.palm.left, .closing .palm.left { left: 1%; }
+.palm.right, .closing .palm.right { right: 1%; }
+.bloom, .c-flowers { left: 0; right: 0; bottom: 0; }
+.bloom i { transform-origin: 50% 100%; }
+.hero-copy { top: clamp(.5rem, 24svh, calc(100% - 16rem)); }
+body.opened .dolly {
+  animation-name: olive-dolly;
+}
+body.opened .hero-inner { animation-name: olive-title-in; }
+body.opened .bloom i {
+  animation-name: olive-bloom-rise, olive-breathe;
+}
+@keyframes olive-dolly {
+  from { transform: scale(1.16); }
+  to { transform: none; }
+}
+@keyframes olive-title-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes olive-bloom-rise {
+  from { opacity: 0; transform: translateY(55%); }
+  40% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}
+@keyframes olive-breathe {
+  from { transform: none; }
+  to { transform: translateY(-1%); }
+}
+[data-reveal="zoom"]:not(.in),
+[data-reveal="zoom-out"]:not(.in) { transform: translateY(12px); }
+[data-reveal="blur"] { filter: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal="zoom"]:not(.in),
+  [data-reveal="zoom-out"]:not(.in) { transform: none; }
+}
 .laces svg { color: #a18448; filter: drop-shadow(0 0 4px var(--cream)); }
 .birds svg { color: var(--olive, #46523b); }
 .hero-inner { padding: .9rem 1.15rem; background: radial-gradient(ellipse, #fffdf5e8, #fffdf5b3 55%, transparent 76%); }
@@ -60,8 +102,12 @@ body {
 .couple-section::after { opacity: .28; }
 .partner h3, .chapter h3 { color: var(--navy); }
 .social { background: var(--blue-deep); }
-.save-title { color: #fff; text-shadow: 0 2px 18px var(--deep); }
-.save-photo::after { background: linear-gradient(transparent 20%, #20291d88 80%); }
+.save-date { padding-bottom: 1.25rem; background: var(--deep); }
+.save-photo { height: auto; }
+.save-photo img, .story-photo img { height: auto; }
+.save-photo::after { content: none; }
+.save-title { position: relative; top: auto; margin: .9rem 0 .7rem; color: var(--paper); }
+.countdown { position: relative; inset: auto; margin: 0 14px; }
 .countdown div { background: var(--cream); border: 1px solid var(--line); box-shadow: 0 6px 16px #20291d30; }
 
 .blue-band { background: linear-gradient(#303b28f5, #20291df5), url('./assets/backdrop.webp') center / cover; }
@@ -85,7 +131,11 @@ body {
 .wishes .who svg, .wishes time { color: var(--muted); }
 
 .story, .gallery-section { background: var(--paper); }
+.story-photo { aspect-ratio: auto; overflow: hidden; }
+.gallery a img { object-fit: contain; }
+.gallery a:hover img { transform: none; }
 .story-photo, .gallery a { background: var(--cream); box-shadow: 0 8px 24px #20291d26; }
+.closing .palm { width: 31%; bottom: 2%; }
 .closing { padding-bottom: min(62vw, 290px); }
 .c-forest { aspect-ratio: 960 / 680; }
 .music { background: var(--deep); color: var(--paper); border-color: var(--gold-soft); }

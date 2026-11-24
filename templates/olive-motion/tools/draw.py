@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageOps
 
 theme = Path(__file__).resolve().parents[1]
 garden = theme.parent / "olive-garden" / "assets"
@@ -34,10 +34,22 @@ save(fade_crop((230, 220, 990, 455), (960, 360), 165, .68), "mountains-far")
 save(fade_crop((120, 298, 1110, 578), (960, 385), 150, .83), "mountains-near")
 save(fade_crop((65, 355, 1105, 800), (960, 680), 280), "forest")
 
-stem = botanical.crop((0, 0, 238, 480))
+def botanical_crop(box, feather=42):
+    image = botanical.crop(box)
+    width, height = image.size
+    mask = Image.new("L", image.size)
+    mask.putdata([
+        round(255 * min(1, (width - 1 - x) / feather, (height - 1 - y) / feather))
+        for y in range(height) for x in range(width)
+    ])
+    image.putalpha(ImageChops.multiply(image.getchannel("A"), mask))
+    return image
+
+
+stem = botanical_crop((0, 0, 238, 480))
 save(stem, "palm")
 save(stem.rotate(-28, expand=True, resample=Image.Resampling.BICUBIC), "leaves")
-save(botanical.crop((0, 135, 430, 500)), "bouquet")
+save(botanical_crop((0, 135, 430, 500)), "bouquet")
 
 flowers = Image.new("RGBA", (960, 680))
 corner = ImageOps.contain(botanical, (710, 495), Image.Resampling.LANCZOS)
