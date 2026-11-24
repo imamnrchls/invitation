@@ -34,6 +34,27 @@ document.querySelectorAll('[data-short-date]').forEach((node) => { node.textCont
 const firstNames = wedding.couple.map(({ name }) => name.split(/\s+/)[0])
 document.querySelectorAll('[data-name]').forEach((node) => { node.textContent = firstNames[node.dataset.name] || '' })
 
+// Split the opening names into letters so they can arrive one by one.
+{
+  let index = 0
+  const names = document.getElementById('hero-names')
+  const walker = document.createTreeWalker(names, NodeFilter.SHOW_TEXT)
+  const texts = []
+  while (walker.nextNode()) texts.push(walker.currentNode)
+  for (const text of texts) {
+    const letters = document.createDocumentFragment()
+    for (const char of text.textContent) {
+      const span = document.createElement('span')
+      span.className = 'ch'
+      span.style.setProperty('--i', index++)
+      span.textContent = char
+      letters.append(span)
+    }
+    text.replaceWith(letters)
+  }
+  names.setAttribute('aria-label', names.textContent.replace(/\s+/g, ' ').trim())
+}
+
 const photos = wedding.photos || []
 const photoAt = (index) => photos[index % Math.max(photos.length, 1)]
 const setPhoto = (selector, photo) => document.querySelectorAll(selector).forEach((img) => {
