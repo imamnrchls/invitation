@@ -20,50 +20,86 @@
       <p class="cover-date" data-date></p>
       <div class="ornament" aria-hidden="true">❧</div>
       <p class="recipient">Kepada Yth. <strong id="guest">Tamu Undangan</strong></p>
-      <a class="button gold" href="#sambutan">Buka Undangan</a>
+      <a class="button gold" id="open-invitation" href="#pembuka">Buka Undangan</a>
     </div>
-    <button class="music" id="music" type="button" aria-pressed="false" hidden>♪ <span>Putar musik</span></button>
   </header>
 
   <main>
+    <section class="opening" id="pembuka" tabindex="-1" aria-label="Pembuka undangan">
+      <div class="opening-photo"></div>
+      <div class="opening-details">
+        <p class="eyebrow">Hari pernikahan kami</p>
+        <h2 data-names></h2>
+        <p data-date></p>
+        <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur pernikahan" hidden>
+          <div><strong data-unit="days">00</strong><span>Hari</span></div>
+          <div><strong data-unit="hours">00</strong><span>Jam</span></div>
+          <div><strong data-unit="minutes">00</strong><span>Menit</span></div>
+          <div><strong data-unit="seconds">00</strong><span>Detik</span></div>
+        </div>
+        <a class="opening-link" href="#sambutan">Lanjut ke sambutan</a>
+        <nav class="opening-shortcuts" aria-label="Akses cepat">
+          <a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">RSVP</a>
+        </nav>
+      </div>
+    </section>
+    <section class="blessing section" id="blessing" hidden>
+      <div class="ornament" aria-hidden="true">❧</div>
+      <blockquote id="blessing-text"></blockquote>
+    </section>
     <section class="welcome section" id="sambutan" tabindex="-1">
       <p class="eyebrow">Dengan sukacita</p>
       <h2>Kami mengundang Anda</h2>
       <p class="intro" id="welcome"></p>
       <div class="couple" id="couple"></div>
     </section>
+    <section class="story section" id="story" hidden>
+      <h2>Kisah Kami</h2>
+      <div id="chapters"></div>
+    </section>
     <section class="schedule section" id="jadwal" tabindex="-1">
       <p class="eyebrow">Hari bahagia kami</p>
       <h2>Jadwal &amp; Lokasi</h2>
       <div class="events" id="events"></div>
+    </section>
+    <section class="keepsakes section" id="galeri" hidden>
+      <p class="eyebrow">Kenangan kami</p>
+      <h2>Cerita dalam foto</h2>
+      <div class="gallery" id="photos"></div>
     </section>
     <section class="reply section" id="rsvp" tabindex="-1">
       <h2>Konfirmasi Kehadiran</h2>
       <p>Mohon konfirmasi paling lambat <strong id="deadline"></strong>.</p>
       <form id="reply">
         <label>Nama<input name="guest" autocomplete="name" required maxlength="120"></label>
-        <label>Kehadiran<select name="attendance" required>
-          <option value="">Pilih kehadiran</option><option value="yes">Hadir</option><option value="no">Tidak hadir</option>
-        </select></label>
+        <fieldset class="attendance">
+          <legend>Kehadiran</legend>
+          <label><input type="radio" name="attendance" value="yes" required> Saya akan hadir</label>
+          <label><input type="radio" name="attendance" value="no"> Saya berhalangan hadir</label>
+        </fieldset>
         <label id="count-field" hidden>Jumlah tamu<input type="number" name="count" min="1" max="6" value="1" disabled></label>
         <button class="button olive" type="submit">Simpan konfirmasi</button>
         <p class="note" id="demo-note" hidden>Formulir demo. Jawaban disimpan di perangkat ini.</p>
         <p id="reply-status" role="status"></p>
       </form>
     </section>
-    <section class="keepsakes section" id="galeri" hidden>
-      <p class="eyebrow">Kenangan kami</p>
-      <h2>Cerita dalam foto</h2>
-      <div class="gallery" id="photos"></div>
-      <div class="story" id="story" hidden><h3>Kisah Kami</h3><div id="chapters"></div></div>
-    </section>
   </main>
   <footer>
     <p class="eyebrow">Terima kasih</p>
     <p>Doa dan kehadiran Anda berarti bagi kami.</p>
     <p class="signature" data-names></p>
-    <a href="#sampul">Kembali ke sampul</a>
+    <a href="#pembuka">Kembali ke awal</a>
   </footer>
+  <button class="music" id="music" type="button" aria-pressed="false" hidden>♪ <span>Putar musik</span></button>
+  <dialog class="photo-viewer" id="photo-viewer" aria-label="Galeri foto">
+    <button class="photo-close" id="photo-close" type="button" aria-label="Tutup galeri" autofocus>×</button>
+    <img id="full-photo" alt="">
+    <div class="photo-controls">
+      <button id="photo-prev" type="button">Sebelumnya</button>
+      <span id="photo-position" aria-live="polite"></span>
+      <button id="photo-next" type="button">Berikutnya</button>
+    </div>
+  </dialog>
   <noscript><p>Aktifkan JavaScript untuk melihat detail undangan ini.</p></noscript>
 </body>
 </html>
