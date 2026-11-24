@@ -109,12 +109,14 @@ body.opened .bloom i {
 .couple-section::after { opacity: .28; }
 .partner h3, .chapter h3 { color: var(--navy); }
 .social { background: var(--blue-deep); }
-.save-date { padding-bottom: 1.25rem; background: var(--deep); }
-.save-photo { height: auto; }
+/* The whole photo stays visible; the title and countdown sit on its lower half. */
+.save-date { background: var(--deep); }
+.save-photo { height: auto; min-height: 21rem; }
 .save-photo img, .story-photo img { height: auto; }
-.save-photo::after { content: none; }
-.save-title { position: relative; top: auto; margin: .9rem 0 .7rem; color: var(--paper); }
-.countdown { position: relative; inset: auto; margin: 0 14px; }
+.save-photo img { min-height: 21rem; object-fit: cover; }
+.save-photo::after { content: ''; background: linear-gradient(#20291d00 30%, #20291d8c 62%, #20291de0); }
+.save-title { top: auto; bottom: calc(14px + 4.4rem); margin: 0; color: var(--paper); text-shadow: 0 2px 14px #20291d99; }
+.countdown { top: auto; bottom: 14px; margin: 0; }
 .countdown div { background: var(--cream); border: 1px solid var(--line); box-shadow: 0 6px 16px #20291d30; }
 
 .blue-band { background: linear-gradient(#303b28f5, #20291df5), url('./assets/backdrop.webp') center / cover; }
