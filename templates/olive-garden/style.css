@@ -126,9 +126,6 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 .countdown div { min-width: 3.5rem; padding: .55rem .4rem; border: 1px solid #e1c99277; }
 .countdown strong { display: block; font: 600 1.75rem/1 var(--serif); font-variant-numeric: tabular-nums; }
 .countdown span { font-size: .81rem; }
-.blessing { padding-block: clamp(2.5rem, 6vw, 5rem); background: #eee6d4; }
-.blessing .ornament { color: #805c2c; }
-.blessing blockquote { max-width: 35rem; margin: .3rem auto; font: italic 500 clamp(1.55rem, 4vw, 2.4rem)/1.25 var(--serif); }
 .story { background: #efe9dc; }
 #chapters { max-width: 49rem; margin: 2rem auto 0; text-align: left; }
 #chapters article { border-inline-start: 1px solid #9e8155; padding-inline-start: 1.25rem; }
@@ -338,4 +335,29 @@ footer .wedding-seal { color: var(--gold); }
   .cover-date { margin-block: .65rem .3rem; }
   .cover .recipient { margin-block: .2rem .8rem; }
   .opening-details { padding-block: 2.5rem; }
+}
+
+.opening { grid-template-columns: 1fr; min-height: min(44rem, 100svh); }
+.opening.has-photo { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+.opening-photo { background: var(--opening-image) center / cover; }
+.opening-details { padding-block: clamp(3rem, 7vw, 6rem); }
+.opening-details h2 { max-width: 13ch; font-size: clamp(3rem, 6vw, 5.25rem); }
+.opening-details .intro { margin-bottom: 1rem; }
+.opening-blessing { max-width: 32rem; }
+.opening-blessing .ornament { color: var(--foil); font-size: 1.6rem; }
+.opening-blessing blockquote { margin: .4rem 0 1rem; font: italic 500 1.35rem/1.35 var(--serif); }
+.countdown { margin: .45rem 0 .75rem; }
+.countdown strong { font-size: 1.45rem; }
+#shared-venue { margin-block: 1.2rem 2rem; }
+#shared-venue > p { font-weight: 700; margin-bottom: .4rem; }
+#shared-venue address { font-style: normal; line-height: 1.65; }
+#shared-venue a { display: inline-block; padding: .65rem 0; color: var(--gold); }
+.schedule-note { margin-inline: auto; max-width: 32rem; }
+.schedule-reply { margin-top: 1.65rem; }
+.event-time { font-weight: 700; }
+.demo-note { margin: 0 auto 1rem; max-width: 28rem; }
+@media (max-width: 670px) {
+  .opening, .opening.has-photo { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .opening-details { grid-row: 1; }
+  .opening-photo { min-height: 14rem; }
 }

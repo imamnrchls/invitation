@@ -22,6 +22,12 @@ if (wedding.blessing) {
   byId('blessing-text').textContent = wedding.blessing
   byId('blessing').hidden = false
 }
+const openingPhoto = wedding.photos?.[1]
+if (openingPhoto) {
+  byId('pembuka').classList.add('has-photo')
+  byId('pembuka').style.setProperty('--opening-image', 'url("' + asset(openingPhoto.file) + '")')
+  byId('pembuka').querySelector('.opening-photo').hidden = false
+}
 byId('welcome').textContent = wedding.welcome
 byId('deadline').textContent = wedding.replyBy
 
@@ -32,16 +38,42 @@ for (const partner of wedding.couple) {
   byId('couple').append(article)
 }
 
-for (const event of wedding.events) {
-  const article = element('article', '')
+function venueDetails(event) {
+  const venue = element('div', '')
+  venue.className = 'venue-details'
   const address = element('address', '')
   address.append(element('strong', event.venue), document.createElement('br'), event.address)
-  const map = element('a', 'Lihat lokasi')
-  map.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(event.mapQuery || event.venue + ', ' + event.address)
-  map.setAttribute('aria-label', 'Lihat lokasi ' + event.title)
+  const pin = event.mapPin && /^-?\d+(?:\.\d+)?,-?\d+(?:\.\d+)?$/.test(event.mapPin)
+  const map = element('a', pin ? 'Buka pin pintu masuk' : 'Cari lokasi di Google Maps')
+  map.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(pin ? event.mapPin : event.mapQuery || event.venue + ', ' + event.address)
+  map.setAttribute('aria-label', map.textContent + ' · ' + event.venue)
+  venue.append(address, map)
+  return venue
+}
+
+const [firstEvent] = wedding.events
+const venueFields = ['date', 'venue', 'address', 'mapPin', 'mapQuery']
+const sharedVenue = wedding.events.length > 1 && wedding.events.every(
+  (event) => venueFields.every((field) => event[field] === firstEvent[field]),
+)
+if (sharedVenue) {
+  const venue = byId('shared-venue')
+  venue.append(element('p', firstEvent.date), venueDetails(firstEvent))
+  venue.hidden = false
+}
+if (wedding.attendanceNote) {
+  byId('attendance-note').textContent = wedding.attendanceNote
+  byId('attendance-note').hidden = false
+}
+
+for (const event of wedding.events) {
+  const article = element('article', '')
+  const time = element('p', sharedVenue ? event.time : event.date + ' · ' + event.time)
+  time.className = 'event-time'
+  article.append(element('h3', event.title), time)
+  if (!sharedVenue) article.append(venueDetails(event))
   const actions = element('div', '')
   actions.className = 'event-actions'
-  actions.append(map)
   const start = Date.parse(event.startsAt)
   const end = Date.parse(event.endsAt)
   if (Number.isFinite(start) && end > start) {
@@ -68,8 +100,8 @@ for (const event of wedding.events) {
     options.append(google, download)
     calendar.append(element('summary', 'Simpan ke kalender'), options)
     actions.append(calendar)
+    article.append(actions)
   }
-  article.append(element('h3', event.title), element('p', event.date + ' · ' + event.time), address, actions)
   byId('events').append(article)
 }
 
@@ -176,7 +208,17 @@ if (wedding.demo) {
   })
 } else {
   form.hidden = true
-  form.before(element('p', 'Konfirmasi online belum tersedia. Silakan hubungi tuan rumah.'))
+  const email = wedding.contactEmail?.trim()
+  const hasContact = email && /^[^\s@?&#]+@[^\s@?&#]+\.[^\s@?&#]+$/.test(email)
+  if (hasContact) {
+    const contact = element('a', 'Hubungi tuan rumah lewat email')
+    contact.href = 'mailto:' + encodeURIComponent(email).replace('%40', '@')
+    contact.className = 'button olive'
+    form.before(contact)
+  } else {
+    form.before(element('p', 'Konfirmasi kehadiran belum tersedia.'))
+  }
+  byId('reply-deadline').hidden = !wedding.replyBy || !hasContact
 }
 updateCount()
 

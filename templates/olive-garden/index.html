@@ -11,7 +11,7 @@
 <body>
   <header class="cover" id="sampul">
     <nav class="top" aria-label="Navigasi undangan">
-      <div><a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">RSVP</a></div>
+      <div><a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">Konfirmasi Kehadiran</a></div>
     </nav>
     <div class="cover-portrait" aria-hidden="true"></div>
     <div class="cover-copy">
@@ -27,32 +27,28 @@
 
   <main>
     <section class="opening" id="pembuka" tabindex="-1" aria-label="Pembuka undangan">
-      <div class="opening-photo"></div>
+      <div class="opening-photo" aria-hidden="true" hidden></div>
       <div class="opening-details">
-        <span class="wedding-seal" data-initials aria-hidden="true"></span>
-        <p class="eyebrow">Hari pernikahan kami</p>
-        <h2 data-names></h2>
-        <p data-date></p>
+        <h2>Dengan sukacita, kami mengundang Anda</h2>
+        <p class="intro" id="welcome"></p>
+        <div class="opening-blessing" id="blessing" hidden>
+          <span class="ornament" aria-hidden="true">❧</span>
+          <blockquote id="blessing-text"></blockquote>
+        </div>
         <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur pernikahan" hidden>
           <div><strong data-unit="days">00</strong><span>Hari</span></div>
           <div><strong data-unit="hours">00</strong><span>Jam</span></div>
           <div><strong data-unit="minutes">00</strong><span>Menit</span></div>
           <div><strong data-unit="seconds">00</strong><span>Detik</span></div>
         </div>
-        <a class="opening-link" href="#sambutan">Lanjut ke sambutan</a>
+        <a class="opening-link" href="#sambutan">Kenali kedua mempelai</a>
         <nav class="opening-shortcuts" aria-label="Akses cepat">
-          <a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">RSVP</a>
+          <a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">Konfirmasi Kehadiran</a>
         </nav>
       </div>
     </section>
-    <section class="blessing section" id="blessing" hidden>
-      <div class="ornament" aria-hidden="true">❧</div>
-      <blockquote id="blessing-text"></blockquote>
-    </section>
     <section class="welcome section" id="sambutan" tabindex="-1">
-      <p class="eyebrow">Dengan sukacita</p>
-      <h2>Kami mengundang Anda</h2>
-      <p class="intro" id="welcome"></p>
+      <h2>Kedua Mempelai</h2>
       <div class="couple" id="couple"></div>
     </section>
     <section class="story section" id="story" hidden>
@@ -62,7 +58,10 @@
     <section class="schedule section" id="jadwal" tabindex="-1">
       <p class="eyebrow">Hari bahagia kami</p>
       <h2>Jadwal &amp; Lokasi</h2>
+      <p class="schedule-note" id="attendance-note" hidden></p>
+      <div id="shared-venue" hidden></div>
       <div class="events" id="events"></div>
+      <a class="button gold schedule-reply" href="#rsvp">Konfirmasi Kehadiran</a>
     </section>
     <section class="keepsakes section" id="galeri" hidden>
       <p class="eyebrow">Kenangan kami</p>
@@ -71,7 +70,8 @@
     </section>
     <section class="reply section" id="rsvp" tabindex="-1">
       <h2>Konfirmasi Kehadiran</h2>
-      <p>Mohon konfirmasi paling lambat <strong id="deadline"></strong>.</p>
+      <p class="note demo-note" id="demo-note" hidden><strong>Formulir demo.</strong> Jawaban hanya tersimpan di perangkat ini.</p>
+      <p id="reply-deadline">Mohon konfirmasi paling lambat <strong id="deadline"></strong>.</p>
       <form id="reply">
         <label>Nama<input name="guest" autocomplete="name" required maxlength="120"></label>
         <fieldset class="attendance">
@@ -80,8 +80,7 @@
           <label><input type="radio" name="attendance" value="no"> Saya berhalangan hadir</label>
         </fieldset>
         <label id="count-field" hidden>Jumlah tamu<input type="number" name="count" min="1" max="6" value="1" disabled></label>
-        <button class="button olive" type="submit">Simpan konfirmasi</button>
-        <p class="note" id="demo-note" hidden>Formulir demo. Jawaban disimpan di perangkat ini.</p>
+        <button class="button olive" type="submit">Coba konfirmasi demo</button>
         <p id="reply-status" role="status"></p>
       </form>
     </section>
