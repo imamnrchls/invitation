@@ -12,6 +12,8 @@ function element(tag, text) {
 document.title = wedding.names + ' | Undangan Pernikahan'
 document.querySelector('meta[name="description"]').content = 'Undangan pernikahan ' + wedding.names + '.'
 document.querySelectorAll('[data-names]').forEach((node) => { node.textContent = wedding.names })
+const initials = wedding.couple.map(({ name }) => Array.from(name.trim())[0]).filter(Boolean)
+document.querySelectorAll('[data-initials]').forEach((node) => { node.textContent = initials.join(' & ') })
 if (wedding.photos?.length) {
   document.documentElement.style.setProperty('--cover-image', 'url("' + asset(wedding.photos[0].file) + '")')
 }

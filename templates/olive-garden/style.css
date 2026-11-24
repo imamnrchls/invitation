@@ -42,7 +42,6 @@ button, input, select { font: inherit; }
 .top a { text-decoration: none; }
 .top a:hover, footer a:hover { text-decoration: underline; }
 .top div { display: flex; gap: clamp(.8rem, 3vw, 2rem); font-size: .875rem; }
-.monogram { font: italic 600 clamp(1.3rem, 3vw, 2rem) var(--serif); }
 .cover-copy { text-shadow: 0 2px 24px #141910; }
 .eyebrow { font-weight: 700; font-size: .875rem; letter-spacing: .18em; text-transform: uppercase; }
 .cover .eyebrow, .ornament { color: var(--gold); }
@@ -176,4 +175,167 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 @media (prefers-reduced-motion: reduce) {
   .thumbnail img, .button, .music { transition: none; }
   .photo-viewer[open], .event-actions details[open] div { animation: none; }
+}
+
+/* Printed invitation details */
+:root {
+  --paper: #faf3e3;
+  --ink: #293421;
+  --foil: #987440;
+  --botanical: url('./assets/botanical.webp');
+}
+.cover, .cover.is-overlay {
+  padding: 0;
+  grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
+  align-items: stretch;
+  background: var(--deep);
+}
+.cover::before { content: none; }
+.cover-portrait {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(90deg, #1c271829, transparent 30%), var(--cover-image, none) 51% center / cover, #37402d;
+}
+.cover-portrait::after {
+  content: '';
+  position: absolute;
+  inset: clamp(.75rem, 2vw, 1.65rem);
+  border: 1px solid #e1c99270;
+  pointer-events: none;
+}
+.cover-copy {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  padding: 6rem 1.9rem 4rem;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% 42%, #fffcf3, var(--paper) 70%, #efe2c8);
+  text-shadow: none;
+  isolation: isolate;
+}
+.cover-copy::before {
+  content: '';
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid #a6844f7a;
+  outline: 1px solid #a6844f36;
+  outline-offset: .28rem;
+  pointer-events: none;
+}
+.cover-copy::after, .opening-details::after {
+  content: '';
+  position: absolute;
+  inset: auto auto 0 0;
+  width: min(55%, 20rem);
+  aspect-ratio: 1.3;
+  background: var(--botanical) left bottom / contain no-repeat;
+  opacity: .7;
+  z-index: -1;
+  pointer-events: none;
+}
+.cover .top {
+  z-index: 1;
+  inset: 2rem auto auto 0;
+  width: 43%;
+  justify-content: center;
+  color: var(--ink);
+}
+.cover .eyebrow, .cover .ornament { color: #74562c; }
+.cover h1 {
+  font-size: clamp(3.2rem, 7.4vw, 8.25rem);
+  font-style: italic;
+  overflow-wrap: anywhere;
+}
+.cover-date { margin-block: .95rem .45rem; }
+.cover .recipient { margin-block: .25rem 1.25rem; }
+.cover .recipient strong { font: 600 1.65rem/1.2 var(--serif); overflow-wrap: anywhere; }
+.wedding-seal {
+  display: inline-grid;
+  place-items: center;
+  width: 4.45rem;
+  height: 4.45rem;
+  margin: 0 auto .55rem;
+  border: 1px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: -.24rem;
+  border-radius: 50%;
+  color: var(--foil);
+  font: italic 600 1.6rem/1 var(--serif);
+}
+.cover .gold {
+  border: 1px solid #35452b;
+  border-radius: 100vmax;
+  color: var(--ivory);
+  background: #35452b;
+}
+.opening-photo {
+  background-position: 50% center;
+}
+.opening-details {
+  position: relative;
+  isolation: isolate;
+  color: var(--ink);
+  background: radial-gradient(ellipse at 50% 42%, #fffcf3, var(--paper) 80%);
+}
+.opening-details::after { opacity: .38; }
+.opening-details .eyebrow, .opening-details .opening-link { color: #74562c; }
+.opening-details h2 { font-style: italic; }
+.countdown div { border-color: #a6844f80; border-radius: 2rem 2rem .2rem .2rem; }
+.countdown strong { color: #4f593d; }
+.welcome h2, .story h2, .schedule h2, .keepsakes h2, .reply h2 { font-style: italic; }
+.couple article {
+  border-top: 0;
+  padding: 1.1rem .75rem;
+}
+.couple article h3::before {
+  content: '❧';
+  display: block;
+  color: var(--foil);
+  font: 1.3rem/1.2 var(--serif);
+  margin-bottom: .5rem;
+}
+.schedule {
+  background: radial-gradient(ellipse at top, #435136, var(--deep) 72%);
+}
+.events article {
+  padding: 2.6rem 1rem 1.8rem;
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: 4.5rem 4.5rem .3rem .3rem;
+  outline: 1px solid #a6844f85;
+  outline-offset: -.45rem;
+}
+.events article h3 { margin-top: .1em; }
+.events a { color: #654a25; text-underline-offset: .23em; }
+.event-actions summary { border-color: #a6844f9e; }
+.event-actions details div { background: #a6844f1b; }
+.gallery { align-items: start; }
+.thumbnail {
+  border: .45rem solid #fbf7ed;
+  box-shadow: 0 0 0 1px #b49a725d;
+}
+.thumbnail:first-child { border-radius: 4rem 4rem .15rem .15rem; }
+.thumbnail:nth-child(even) { margin-top: 1.65rem; }
+footer .wedding-seal { color: var(--gold); }
+
+@media (max-width: 670px) {
+  .cover, .cover.is-overlay { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(14rem, 42svh) 1fr; }
+  .cover-portrait { grid-column: 1; background-position: 50% 36%; }
+  .cover-copy { grid-row: 2; padding: 2.1rem 1.55rem 2.25rem; }
+  .cover-copy::before { inset: .65rem; outline-offset: .18rem; }
+  .cover .top { inset: .85rem 1.05rem auto; width: auto; color: var(--ivory); }
+  .cover .top div { background: #1b251ce5; padding: .6rem 1rem; border-radius: 2rem; }
+  .cover .wedding-seal { width: 3.2rem; height: 3.2rem; font-size: 1.2rem; margin-bottom: .2rem; }
+  .cover .eyebrow { margin-block: .65rem .4rem; }
+  .cover .ornament { font-size: 1.6rem; }
+  .cover-date { margin-block: .65rem .3rem; }
+  .cover .recipient { margin-block: .2rem .8rem; }
+  .opening-details { padding-block: 2.5rem; }
 }

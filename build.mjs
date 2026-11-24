@@ -17,5 +17,10 @@ await cp(from(templatePath + 'index.html'), to('index.html'))
 for (const file of ['style.css', 'invitation.js']) {
   await cp(from(templatePath + file), to('templates/' + template + '/' + file))
 }
+try {
+  await cp(from(templatePath + 'assets/'), to('templates/' + template + '/assets/'), { recursive: true })
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error
+}
 await cp(from(eventPath + 'wedding.js'), to('wedding.js'))
 await cp(from(eventPath + 'assets/'), to('assets/'), { recursive: true })
