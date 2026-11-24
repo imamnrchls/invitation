@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Undangan pernikahan Ayu dan Raka.">
+  <title>Undangan Pernikahan</title>
+  <link rel="stylesheet" href="./templates/olive-garden/style.css">
+  <script type="module" src="./templates/olive-garden/invitation.js"></script>
+</head>
+<body>
+  <header class="cover" id="sampul">
+    <nav class="top" aria-label="Navigasi undangan">
+      <a class="monogram" data-names href="#sampul"></a>
+      <div><a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">RSVP</a></div>
+    </nav>
+    <div class="cover-copy">
+      <p class="eyebrow">Undangan Pernikahan</p>
+      <h1 data-names></h1>
+      <p class="cover-date" data-date></p>
+      <div class="ornament" aria-hidden="true">❧</div>
+      <p class="recipient">Kepada Yth. <strong id="guest">Tamu Undangan</strong></p>
+      <a class="button gold" href="#sambutan">Buka Undangan</a>
+    </div>
+    <button class="music" id="music" type="button" aria-pressed="false" hidden>♪ <span>Putar musik</span></button>
+  </header>
+
+  <main>
+    <section class="welcome section" id="sambutan" tabindex="-1">
+      <p class="eyebrow">Dengan sukacita</p>
+      <h2>Kami mengundang Anda</h2>
+      <p class="intro" id="welcome"></p>
+      <div class="couple" id="couple"></div>
+    </section>
+    <section class="schedule section" id="jadwal" tabindex="-1">
+      <p class="eyebrow">Hari bahagia kami</p>
+      <h2>Jadwal &amp; Lokasi</h2>
+      <div class="events" id="events"></div>
+    </section>
+    <section class="reply section" id="rsvp" tabindex="-1">
+      <h2>Konfirmasi Kehadiran</h2>
+      <p>Mohon konfirmasi paling lambat <strong id="deadline"></strong>.</p>
+      <form id="reply">
+        <label>Nama<input name="guest" autocomplete="name" required maxlength="120"></label>
+        <label>Kehadiran<select name="attendance" required>
+          <option value="">Pilih kehadiran</option><option value="yes">Hadir</option><option value="no">Tidak hadir</option>
+        </select></label>
+        <label id="count-field" hidden>Jumlah tamu<input type="number" name="count" min="1" max="6" value="1" disabled></label>
+        <button class="button olive" type="submit">Simpan konfirmasi</button>
+        <p class="note" id="demo-note" hidden>Formulir demo. Jawaban disimpan di perangkat ini.</p>
+        <p id="reply-status" role="status"></p>
+      </form>
+    </section>
+    <section class="keepsakes section" id="galeri" hidden>
+      <p class="eyebrow">Kenangan kami</p>
+      <h2>Cerita dalam foto</h2>
+      <div class="gallery" id="photos"></div>
+      <div class="story" id="story" hidden><h3>Kisah Kami</h3><div id="chapters"></div></div>
+    </section>
+  </main>
+  <footer>
+    <p class="eyebrow">Terima kasih</p>
+    <p>Doa dan kehadiran Anda berarti bagi kami.</p>
+    <p class="signature" data-names></p>
+    <a href="#sampul">Kembali ke sampul</a>
+  </footer>
+  <noscript><p>Aktifkan JavaScript untuk melihat detail undangan ini.</p></noscript>
+</body>
+</html>
