@@ -33,4 +33,8 @@ Optional fields: `shortDate`, `quote`, `inviteLine`, `couple[].instagram`, `stre
 
 The scene layers can be regenerated with `python templates/olive-motion/tools/draw.py` (requires Pillow). It reads `assets/backdrop.webp` and `tools/source/botanical.webp`.
 
+## Deploy to Vercel
+
+`vercel.json` runs `node build.mjs` and serves `dist/`. It builds the default event (`ayu-raka`). For another wedding, set the build command to `node build.mjs <event-slug>` in `vercel.json` or the project settings.
+
 The GitHub repository is public. Keep guest lists, RSVP records, and other private event data outside it.

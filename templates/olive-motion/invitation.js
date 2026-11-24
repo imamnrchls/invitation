@@ -30,6 +30,14 @@ const icon = (id, cls = 'ico') => {
 document.title = wedding.names + ' | Undangan Pernikahan'
 document.querySelector('meta[name="description"]').content = 'Undangan pernikahan ' + wedding.names + '.'
 document.querySelectorAll('[data-names]').forEach((node) => { node.textContent = wedding.names })
+document.querySelectorAll('.cover-names').forEach((node) => {
+  const parts = wedding.names.split(/\s*&\s*/)
+  if (parts.length !== 2) return
+  const amp = document.createElement('span')
+  amp.className = 'amp'
+  amp.textContent = '&'
+  node.replaceChildren(parts[0] + ' ', amp, ' ' + parts[1])
+})
 document.querySelectorAll('[data-short-date]').forEach((node) => { node.textContent = wedding.shortDate || wedding.date })
 const firstNames = wedding.couple.map(({ name }) => name.split(/\s+/)[0])
 document.querySelectorAll('[data-name]').forEach((node) => { node.textContent = firstNames[node.dataset.name] || '' })

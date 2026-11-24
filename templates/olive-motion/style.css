@@ -503,3 +503,78 @@ body.opened .bloom i {
 .music { background: var(--deep); color: var(--paper); border-color: var(--gold-soft); }
 .viewer { background: var(--deep); }
 .viewer::backdrop { background: #20291de0; }
+
+/* ---------- cover polish ---------- */
+.cover-bouquet {
+  top: 0; width: min(32%, 10.5rem); aspect-ratio: 430 / 365;
+  transform-origin: 0 0;
+  animation: cover-bouquet-in 1.6s .3s var(--ease) both, cover-sway 7s 1.9s ease-in-out infinite alternate;
+}
+.cover-bouquet::before { content: ''; position: absolute; inset: 0; background: url('./assets/bouquet.webp') left top / contain no-repeat; }
+.cover-bg .cover-bouquet { right: auto; }
+.cover-bouquet.left { left: -8%; }
+.cover-bg .cover-bouquet.right { left: auto; right: -8%; transform-origin: 100% 0; animation-direction: normal, alternate-reverse; }
+.cover-bouquet.right::before { scale: -1 1; }
+.cover-glow {
+  inset: 0;
+  background:
+    radial-gradient(60% 38% at 50% 34%, #fffdf5e6, #fffdf500 70%),
+    linear-gradient(#eee6d400 55%, #eee6d4aa 75%, #eee6d400);
+}
+.cover-motes { inset: 0; }
+.cover-motes i {
+  position: absolute; left: var(--x); top: var(--y);
+  width: 5px; height: 5px; border-radius: 50%;
+  background: radial-gradient(#fff6d6, #d8bd7c 55%, #d8bd7c00 72%);
+  opacity: 0;
+  animation: cover-mote var(--t) var(--w, 0s) ease-in-out infinite;
+}
+.cover-copy { z-index: 1; }
+.cover-kicker { display: flex; align-items: center; gap: .8rem; color: var(--gold); font-size: .78rem; letter-spacing: .3em; margin-right: -.3em; }
+.cover-kicker::before, .cover-kicker::after { content: ''; width: 1.8rem; height: 1px; background: currentColor; opacity: .6; }
+.cover .arch {
+  border-width: 3px;
+  outline-offset: 5px;
+  outline-color: #a88b52b3;
+  box-shadow: 0 0 0 6px #fffdf5aa, 0 18px 36px #303b2833;
+  width: min(44vw, 205px, 27svh);
+  margin: clamp(.5rem, 1.8svh, 1rem) 0 clamp(.4rem, 2svh, 1.1rem);
+}
+.cover .arch img { animation: cover-photo 14s ease-in-out infinite alternate; }
+.cover-names { font-size: clamp(2.5rem, 11.5vw, 3.2rem); line-height: 1.05; }
+.cover-names .amp { display: inline-block; margin: 0 .04em; font-style: italic; font-weight: 500; color: var(--gold); }
+.cover-date {
+  display: flex; align-items: center; gap: .6rem;
+  font: 600 .78rem/1 var(--sans); letter-spacing: .32em; color: var(--muted);
+}
+.cover-date span { margin-right: -.32em; }
+.cover-date::before, .cover-date::after { content: ''; width: 2.4rem; height: 1px; }
+.cover-date::before { background: linear-gradient(90deg, transparent, var(--gold)); }
+.cover-date::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.cover-guest {
+  position: relative;
+  width: min(100%, 19rem);
+  margin: clamp(.5rem, 2svh, 1rem) 0 clamp(.5rem, 1.6svh, .9rem);
+  padding: .85rem 1.2rem .8rem;
+  border: 1px solid #a88b5280;
+  border-radius: 6px;
+  background: #fffdf5c4;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px #303b2814;
+}
+.cover-guest::before { content: ''; position: absolute; inset: 4px; border: 1px solid #a88b5233; border-radius: 4px; pointer-events: none; }
+.cover-guest .dear { margin: 0; font-size: .75rem; }
+.cover-guest .guest { margin: .15rem 0 .3rem; font: 600 1.45rem/1.2 var(--serif); color: var(--navy); max-width: none; }
+.guest-note { font-size: .66rem; line-height: 1.4; font-style: italic; color: var(--muted); opacity: .85; }
+.cover .pill { position: relative; overflow: hidden; box-shadow: 0 6px 16px #7c612e33; }
+.cover .pill::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%;
+  background: linear-gradient(100deg, transparent, #fffdf5aa, transparent);
+  animation: cover-shine 4.5s 2.2s ease-in-out infinite;
+}
+@keyframes cover-bouquet-in { from { opacity: 0; transform: translateY(-14%) rotate(-6deg); } to { opacity: 1; transform: none; } }
+@keyframes cover-sway { from { rotate: 0deg; } to { rotate: 2.2deg; } }
+@keyframes cover-mote { 0% { opacity: 0; transform: translateY(0); } 30%, 70% { opacity: .8; } 100% { opacity: 0; transform: translateY(-60px); } }
+@keyframes cover-photo { from { transform: scale(1); } to { transform: scale(1.06); } }
+@keyframes cover-shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
