@@ -1,6 +1,6 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 
-const [event = 'ayu-raka', template = 'olive-motion'] = process.argv.slice(2)
+const [event = 'ayu-raka', template = 'betawi-motion'] = process.argv.slice(2)
 for (const slug of [event, template]) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error('Use lowercase event and template slugs.')
 }
