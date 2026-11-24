@@ -50,7 +50,6 @@ const setPhoto = (selector, photo) => document.querySelectorAll(selector).forEac
   img.alt = photo.alt
 })
 setPhoto('[data-cover-photo]', wedding.coverPhoto ? { file: wedding.coverPhoto, alt: wedding.names } : photoAt(0))
-setPhoto('[data-feature-photo]', photoAt(0))
 setPhoto('[data-story-photo]', photoAt(1))
 setPhoto('[data-closing-photo]', photoAt(0))
 

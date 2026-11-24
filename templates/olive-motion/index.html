@@ -72,8 +72,8 @@
           <svg style="--x:12%;--y:6%;--s:46px;--d:0s"><use href="#i-lace"/></svg>
           <svg style="--x:44%;--y:2%;--s:38px;--d:.15s"><use href="#i-lace"/></svg>
           <svg style="--x:78%;--y:7%;--s:52px;--d:.05s"><use href="#i-lace"/></svg>
-          <svg style="--x:62%;--y:15%;--s:30px;--d:.25s"><use href="#i-lace"/></svg>
-          <svg style="--x:26%;--y:17%;--s:28px;--d:.3s"><use href="#i-lace"/></svg>
+          <svg style="--x:88%;--y:22%;--s:30px;--d:.25s"><use href="#i-lace"/></svg>
+          <svg style="--x:4%;--y:24%;--s:28px;--d:.3s"><use href="#i-lace"/></svg>
         </div>
         <div class="birds">
           <svg style="--top:14%;--dur:16s;--delay:.9s;--size:13px"><use href="#i-bird"/></svg>
@@ -88,10 +88,16 @@
       </div>
       <div class="hero-copy" data-depth="-.25">
         <div class="hero-inner">
-          <p class="kicker">The Wedding Of</p>
-          <h2 class="script-names" id="hero-names"><span data-name="0"></span> <span class="amp">&amp;</span><br><span data-name="1"></span></h2>
-          <p class="hero-date" data-short-date></p>
-          <a class="pill" href="#save-date">Save The Date</a>
+          <p class="kicker" style="--i:0">The Wedding Of</p>
+          <h2 class="script-names" id="hero-names" style="--i:1"><span data-name="0"></span> <span class="amp">&amp;</span><br><span data-name="1"></span></h2>
+          <p class="hero-date" data-short-date style="--i:2"></p>
+          <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur menuju hari pernikahan" style="--i:3" hidden>
+            <div><strong data-unit="days">0</strong><span>Hari</span></div>
+            <div><strong data-unit="hours">0</strong><span>Jam</span></div>
+            <div><strong data-unit="minutes">0</strong><span>Menit</span></div>
+            <div><strong data-unit="seconds">0</strong><span>Detik</span></div>
+          </div>
+          <a class="pill" href="#jadwal" style="--i:4">Save The Date</a>
         </div>
       </div>
     </section>
@@ -107,18 +113,6 @@
     <section class="couple-section" id="mempelai">
       <p class="lede" id="invite-line" data-reveal="up"></p>
       <div id="couple"></div>
-    </section>
-
-    <!-- Save the date -->
-    <section class="save-date" id="save-date">
-      <figure class="save-photo" data-reveal="zoom-out"><img data-feature-photo alt="" loading="lazy"></figure>
-      <h2 class="script save-title" data-reveal="blur">Save The Date</h2>
-      <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur menuju hari pernikahan" hidden>
-        <div data-reveal="up" style="--d:0s"><strong data-unit="days">0</strong><span>Hari</span></div>
-        <div data-reveal="up" style="--d:.1s"><strong data-unit="hours">0</strong><span>Jam</span></div>
-        <div data-reveal="up" style="--d:.2s"><strong data-unit="minutes">0</strong><span>Menit</span></div>
-        <div data-reveal="up" style="--d:.3s"><strong data-unit="seconds">0</strong><span>Detik</span></div>
-      </div>
     </section>
 
     <!-- Events -->
