@@ -199,7 +199,7 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 }
 .countdown div { border-color: #a6844f80; border-radius: 2rem 2rem .2rem .2rem; }
 .countdown strong { color: #4f593d; }
-.welcome h2, .story h2, .schedule h2, .keepsakes h2, .reply h2 { font-style: italic; }
+.section h2 { font-style: normal; }
 .couple article {
   border-top: 0;
   padding: 1.1rem .75rem;
@@ -243,7 +243,7 @@ footer .wedding-seal { color: var(--gold); }
 .opening-details .intro { margin-bottom: 1rem; }
 .opening-blessing { max-width: 32rem; }
 .opening-blessing .ornament { color: var(--foil); font-size: 1.6rem; }
-.opening-blessing blockquote { margin: .4rem 0 1rem; font: italic 500 1.35rem/1.35 var(--serif); }
+.opening-blessing blockquote { margin: .4rem 0 1rem; font: 500 1.4rem/1.55 var(--serif); }
 .countdown { margin: .45rem 0 .75rem; }
 .countdown strong { font-size: 1.45rem; }
 #shared-venue { margin-block: 1.2rem 2rem; }
@@ -252,7 +252,7 @@ footer .wedding-seal { color: var(--gold); }
 #shared-venue a { display: inline-block; padding: .65rem 0; color: var(--gold); }
 .schedule-note { margin-inline: auto; max-width: 32rem; }
 .schedule-reply { margin-top: 1.65rem; }
-.event-time { font-weight: 700; }
+.event-time { margin: .35rem 0 1rem; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
 .demo-note { margin: 0 auto 1rem; max-width: 28rem; }
 
 /* The illustration is assembled in independent depth planes. */
@@ -269,7 +269,7 @@ footer .wedding-seal { color: var(--gold); }
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse min(36rem, 65%) min(25rem, 72%) at center,
-    #fffaf0f7 12%, #fff8e9e8 54%, #fff8e97a 79%, #fff8e900 100%);
+    #fffaf0db 12%, #fff8e9c9 54%, #fff8e962 79%, #fff8e900 100%);
 }
 .opening-photo > span { position: absolute; pointer-events: none; }
 .scene-landscape {
@@ -278,11 +278,11 @@ footer .wedding-seal { color: var(--gold); }
 }
 .scene-bough {
   inset: -2% 0 auto auto;
-  width: clamp(11rem, 37vw, 27rem);
+  width: clamp(6.5rem, 21vw, 16rem);
   aspect-ratio: 3 / 2;
   background: var(--botanical) center / contain no-repeat;
   transform: rotate(180deg);
-  opacity: .58;
+  opacity: .49;
 }
 .scene-blossoms {
   inset: auto auto -4% -2%;
@@ -294,25 +294,25 @@ footer .wedding-seal { color: var(--gold); }
   .scene-landscape { background-position: 47% center; }
   .opening-photo::after {
     background: radial-gradient(ellipse 94% 48% at center,
-      #fffaf0fa 20%, #fff8e9ed 67%, #fff8e978 88%, #fff8e900);
+      #fffaf0e3 20%, #fff8e9d1 67%, #fff8e962 88%, #fff8e900);
   }
 }
 @media (prefers-reduced-motion: no-preference) {
   .opening.scene-playing {
-    --landscape-time: 7.4s;
-    --blossom-delay: 2.6s;
+    --landscape-time: 5.4s;
+    --blossom-delay: 2s;
     --blossom-time: 2.8s;
-    --details-delay: 8s;
+    --details-delay: 3.35s;
     --scene-ease: cubic-bezier(.2,.7,.25,1);
   }
   .scene-playing .scene-landscape { animation: landscape-in var(--landscape-time) var(--scene-ease) both; }
   .scene-playing .scene-bough { animation: bough-in 2.4s 1.2s var(--scene-ease) both; }
   .scene-playing .scene-blossoms { animation: blossoms-in var(--blossom-time) var(--blossom-delay) var(--scene-ease) both; }
-  .scene-playing .opening-photo::after { animation: center-light 1.5s 6.5s ease-out both; }
-  .scene-playing .opening-details > * { animation: details-in 1.1s var(--details-delay) var(--scene-ease) both; }
-  .scene-playing .opening-details h2 { animation-delay: 8.3s; }
-  .scene-playing .opening-details [data-date] { animation-delay: 8.7s; }
-  .scene-playing .opening-details .button { animation-delay: 9s; }
+  .scene-playing .opening-photo::after { animation: center-light 1.15s 2.55s ease-out both; }
+  .scene-playing .opening-details > * { animation: details-in .75s var(--details-delay) var(--scene-ease) both; }
+  .scene-playing .opening-details h2 { animation-delay: 3.7s; }
+  .scene-playing .opening-details [data-date] { animation-delay: 4.4s; }
+  .scene-playing .opening-details .button { animation-delay: 4.8s; }
 }
 @keyframes landscape-in { from { opacity: .25; transform: scale(1.16) translateY(4%); } }
 @keyframes bough-in { from { opacity: 0; transform: translate(7%, -9%) rotate(174deg); } }
@@ -339,7 +339,9 @@ footer .wedding-seal { color: var(--gold); }
 
 .portrait-medallion { display: block; width: clamp(7rem, 19vh, 12rem); aspect-ratio: 3/4; object-fit: cover; margin: 0 auto 1rem; border-radius: 50% 50% 45% 45%; outline: 2px solid var(--foil); outline-offset: 4px; }
 .opening-details h2 { font-size: clamp(4rem, 10vw, 8rem); }
-.letter { background: var(--paper); }
+.letter { background: var(--paper); padding-block: clamp(4rem, 12vw, 9rem); }
+.letter h2 { max-width: 18ch; margin-inline: auto; }
+.letter .intro { max-width: 36rem; margin: 1.4rem auto 2.25rem; }
 .countdown-panel { display: grid; place-items: center; min-height: 45svh; background: linear-gradient(#20291d44,#20291d88),var(--portrait, none) center 40% / cover,var(--deep); }
 .countdown-panel .countdown div { background: var(--paper); color: var(--ink); }
 .extras p { max-width: 32rem; margin-inline: auto; }
@@ -351,16 +353,5 @@ footer .wedding-seal { color: var(--gold); }
 .couple article:nth-child(even) .portrait-medallion { float: left; margin: 0 1.5rem 1rem 1rem; }
 @media (max-height: 650px) { .cover .portrait-medallion { width: 5rem; } }
 
-.scene-flowers-right {
-  inset: auto -3% -4% auto;
-  width: clamp(13rem, 40vw, 34rem);
-  aspect-ratio: 3 / 2;
-  transform: scaleX(-1);
-  background: var(--botanical) left bottom / contain no-repeat;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .scene-playing .scene-flowers-right { animation: right-flowers-in 2.6s 3.1s var(--scene-ease) both; }
-}
-@keyframes right-flowers-in { from { opacity: 0; transform: translate(7%, 13%) scaleX(-1) rotate(-4deg); } }
 .letter .opening-blessing { margin-inline: auto; }
 textarea { font: inherit; color: inherit; padding: .75rem; resize: vertical; }

@@ -326,7 +326,6 @@ if (shortcut && shortcut !== cover) {
 
 let observer
 const revealGroups = [
-  ['.letter', '[data-motion]'],
   ['.welcome', 'h2, .couple article'],
   ['.story', 'h2, #chapters article'],
   ['.schedule', 'h2, #shared-venue, .events article'],
@@ -343,12 +342,13 @@ function watchReveals() {
       observer.unobserve(target)
       if (reducedMotion?.matches) continue
       const { stagger, side } = target.dataset
+      const quick = Boolean(target.closest('#jadwal, #rsvp'))
       target.animate?.(
         [
-          { opacity: .15, translate: side + 'px 14px' },
+          { opacity: quick ? .8 : .15, translate: quick ? '0 0' : side + 'px 14px' },
           { opacity: 1, translate: '0 0' },
         ],
-        { duration: 560, delay: Number(stagger), easing: 'cubic-bezier(.2,.7,.25,1)', fill: 'backwards' },
+        { duration: quick ? 180 : 560, delay: quick ? 0 : Number(stagger), easing: 'cubic-bezier(.2,.7,.25,1)', fill: 'backwards' },
       )
     }
   }, { threshold: .12 })
