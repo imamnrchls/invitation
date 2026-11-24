@@ -16,10 +16,11 @@
       <span class="scene-landscape"></span>
       <span class="scene-bough"></span>
       <span class="scene-blossoms"></span>
+      <span class="scene-flowers-right"></span>
     </div>
     <div class="cover-copy">
       <div class="cover-title">
-        <span class="wedding-seal" data-initials aria-hidden="true"></span>
+        <img class="portrait-medallion" data-portrait alt="" hidden>
         <p class="eyebrow">Undangan Pernikahan</p>
         <h1 data-names></h1>
         <p class="cover-date" data-date></p>
@@ -40,33 +41,34 @@
         <span class="scene-landscape"></span>
         <span class="scene-bough"></span>
         <span class="scene-blossoms"></span>
+      <span class="scene-flowers-right"></span>
       </div>
       <div class="opening-details">
+        <p class="eyebrow">Pernikahan</p>
+        <h2 data-names></h2>
+        <p data-date></p>
+        <a class="button olive" href="#jadwal">Lihat jadwal pernikahan</a>
+      </div>
+    </section>
+    <section class="letter section">
         <h2 data-motion>Dengan sukacita, kami mengundang Anda</h2>
         <p class="intro" id="welcome" data-motion></p>
         <div class="opening-blessing" id="blessing" data-motion hidden>
           <span class="ornament" aria-hidden="true">❧</span>
           <blockquote id="blessing-text"></blockquote>
         </div>
+    </section>
+    <section class="welcome section" id="sambutan" tabindex="-1">
+      <h2>Kedua Mempelai</h2>
+      <div class="couple" id="couple"></div>
+    </section>
+    <section class="countdown-panel section" aria-label="Menuju hari pernikahan">
         <div class="countdown" id="countdown" data-motion role="timer" aria-label="Hitung mundur pernikahan" hidden>
           <div><strong data-unit="days">00</strong><span>Hari</span></div>
           <div><strong data-unit="hours">00</strong><span>Jam</span></div>
           <div><strong data-unit="minutes">00</strong><span>Menit</span></div>
           <div><strong data-unit="seconds">00</strong><span>Detik</span></div>
         </div>
-        <a class="opening-link" href="#sambutan">Kenali kedua mempelai</a>
-        <nav class="opening-shortcuts" aria-label="Akses cepat">
-          <a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">Konfirmasi Kehadiran</a>
-        </nav>
-      </div>
-    </section>
-    <section class="welcome section" id="sambutan" tabindex="-1">
-      <h2>Kedua Mempelai</h2>
-      <div class="couple" id="couple"></div>
-    </section>
-    <section class="story section" id="story" hidden>
-      <h2>Kisah Kami</h2>
-      <div id="chapters"></div>
     </section>
     <section class="schedule section" id="jadwal" tabindex="-1">
       <p class="eyebrow">Hari bahagia kami</p>
@@ -76,17 +78,24 @@
       <div class="events" id="events"></div>
       <a class="button gold schedule-reply" href="#rsvp">Konfirmasi Kehadiran</a>
     </section>
+    <section class="story section" id="story" hidden>
+      <h2>Kisah Kami</h2>
+      <div id="chapters"></div>
+    </section>
     <section class="keepsakes section" id="galeri" hidden>
       <p class="eyebrow">Kenangan kami</p>
       <h2>Cerita dalam foto</h2>
       <div class="gallery" id="photos"></div>
     </section>
+    <section class="extras section" id="stream" hidden><h2>Siaran Langsung</h2><p></p></section>
+    <section class="extras section" id="gift" hidden><h2>Hadiah Pernikahan</h2><p></p></section>
     <section class="reply section" id="rsvp" tabindex="-1">
       <h2>Konfirmasi Kehadiran</h2>
       <p class="note demo-note" id="demo-note" hidden><strong>Formulir demo.</strong> Jawaban hanya tersimpan di perangkat ini.</p>
       <p id="reply-deadline">Mohon konfirmasi paling lambat <strong id="deadline"></strong>.</p>
       <form id="reply">
         <label>Nama<input name="guest" autocomplete="name" required maxlength="120"></label>
+        <label>Ucapan dan doa (opsional)<textarea name="wish" rows="3" maxlength="500"></textarea></label>
         <fieldset class="attendance">
           <legend>Kehadiran</legend>
           <label><input type="radio" name="attendance" value="yes" required> Saya akan hadir</label>
@@ -99,6 +108,7 @@
     </section>
   </main>
   <footer>
+    <img class="portrait-medallion" data-portrait alt="" hidden>
     <span class="wedding-seal" data-initials aria-hidden="true"></span>
     <p class="eyebrow">Terima kasih</p>
     <p>Doa dan kehadiran Anda berarti bagi kami.</p>

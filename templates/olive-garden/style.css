@@ -298,24 +298,21 @@ footer .wedding-seal { color: var(--gold); }
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .cover.is-overlay {
-    --landscape-time: 1.65s;
-    --blossom-delay: .55s;
-    --blossom-time: 1.3s;
-    --details-delay: calc(var(--blossom-delay) + var(--blossom-time));
+  .opening.scene-playing {
+    --landscape-time: 7.4s;
+    --blossom-delay: 2.6s;
+    --blossom-time: 2.8s;
+    --details-delay: 8s;
     --scene-ease: cubic-bezier(.2,.7,.25,1);
   }
-  .cover.is-overlay .scene-landscape { animation: landscape-in var(--landscape-time) var(--scene-ease) both; }
-  .cover.is-overlay .scene-bough { animation: bough-in 1.25s .36s var(--scene-ease) both; }
-  .cover.is-overlay .scene-blossoms { animation: blossoms-in var(--blossom-time) var(--blossom-delay) var(--scene-ease) both; }
-  .cover.is-overlay .opening-photo::after { animation: center-light .55s 1.25s ease-out both; }
-  .cover.is-overlay .cover-title,
-  .cover.is-overlay .recipient,
-  .cover.is-overlay .cover-actions {
-    animation: details-in .5s var(--details-delay) var(--scene-ease) both;
-  }
-  .cover.is-overlay .recipient { animation-delay: calc(var(--details-delay) + .13s); }
-  .cover.is-overlay .cover-actions { animation-delay: calc(var(--details-delay) + .26s); }
+  .scene-playing .scene-landscape { animation: landscape-in var(--landscape-time) var(--scene-ease) both; }
+  .scene-playing .scene-bough { animation: bough-in 2.4s 1.2s var(--scene-ease) both; }
+  .scene-playing .scene-blossoms { animation: blossoms-in var(--blossom-time) var(--blossom-delay) var(--scene-ease) both; }
+  .scene-playing .opening-photo::after { animation: center-light 1.5s 6.5s ease-out both; }
+  .scene-playing .opening-details > * { animation: details-in 1.1s var(--details-delay) var(--scene-ease) both; }
+  .scene-playing .opening-details h2 { animation-delay: 8.3s; }
+  .scene-playing .opening-details [data-date] { animation-delay: 8.7s; }
+  .scene-playing .opening-details .button { animation-delay: 9s; }
 }
 @keyframes landscape-in { from { opacity: .25; transform: scale(1.16) translateY(4%); } }
 @keyframes bough-in { from { opacity: 0; transform: translate(7%, -9%) rotate(174deg); } }
@@ -339,3 +336,31 @@ footer .wedding-seal { color: var(--gold); }
   z-index: -1;
 }
 .couple article:nth-child(even)::after { inset: auto 0 0 auto; transform: scaleX(-1); }
+
+.portrait-medallion { display: block; width: clamp(7rem, 19vh, 12rem); aspect-ratio: 3/4; object-fit: cover; margin: 0 auto 1rem; border-radius: 50% 50% 45% 45%; outline: 2px solid var(--foil); outline-offset: 4px; }
+.opening-details h2 { font-size: clamp(4rem, 10vw, 8rem); }
+.letter { background: var(--paper); }
+.countdown-panel { display: grid; place-items: center; min-height: 45svh; background: linear-gradient(#20291d44,#20291d88),var(--portrait, none) center 40% / cover,var(--deep); }
+.countdown-panel .countdown div { background: var(--paper); color: var(--ink); }
+.extras p { max-width: 32rem; margin-inline: auto; }
+#gift { background: #eee6d4; }
+.events, #chapters, .couple { max-width: 42rem; grid-template-columns: 1fr; margin-inline: auto; }
+.couple article { text-align: left; display: flow-root; }
+.couple article .portrait-medallion { float: right; margin: 0 1rem 1rem 1.5rem; }
+.couple article:nth-child(even) { text-align: right; }
+.couple article:nth-child(even) .portrait-medallion { float: left; margin: 0 1.5rem 1rem 1rem; }
+@media (max-height: 650px) { .cover .portrait-medallion { width: 5rem; } }
+
+.scene-flowers-right {
+  inset: auto -3% -4% auto;
+  width: clamp(13rem, 40vw, 34rem);
+  aspect-ratio: 3 / 2;
+  transform: scaleX(-1);
+  background: var(--botanical) left bottom / contain no-repeat;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scene-playing .scene-flowers-right { animation: right-flowers-in 2.6s 3.1s var(--scene-ease) both; }
+}
+@keyframes right-flowers-in { from { opacity: 0; transform: translate(7%, 13%) scaleX(-1) rotate(-4deg); } }
+.letter .opening-blessing { margin-inline: auto; }
+textarea { font: inherit; color: inherit; padding: .75rem; resize: vertical; }

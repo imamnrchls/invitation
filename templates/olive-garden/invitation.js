@@ -12,6 +12,19 @@ function element(tag, text) {
 document.title = wedding.names + ' | Undangan Pernikahan'
 document.querySelector('meta[name="description"]').content = 'Undangan pernikahan ' + wedding.names + '.'
 document.querySelectorAll('[data-names]').forEach((node) => { node.textContent = wedding.names })
+if (wedding.photos?.length) {
+  const portrait = asset(wedding.photos[0].file)
+  document.documentElement.style.setProperty('--portrait', 'url("' + portrait + '")')
+  document.querySelectorAll('[data-portrait]').forEach((img) => {
+    img.src = portrait
+    img.hidden = false
+  })
+}
+for (const id of ['stream', 'gift']) {
+  if (!wedding[id]) continue
+  byId(id).querySelector('p').textContent = wedding[id]
+  byId(id).hidden = false
+}
 const initials = wedding.couple.map(({ name }) => Array.from(name.trim())[0]).filter(Boolean)
 document.querySelectorAll('[data-initials]').forEach((node) => { node.textContent = initials.join(' & ') })
 document.querySelectorAll('[data-date]').forEach((node) => { node.textContent = wedding.date })
@@ -24,6 +37,14 @@ byId('deadline').textContent = wedding.replyBy
 
 for (const partner of wedding.couple) {
   const article = element('article', '')
+  if (partner.portrait) {
+    const img = document.createElement('img')
+    img.className = 'portrait-medallion'
+    img.loading = 'lazy'
+    img.alt = partner.name
+    img.src = asset(partner.portrait)
+    article.append(img)
+  }
   article.append(element('h3', partner.name))
   if (partner.family) article.append(element('p', partner.family))
   byId('couple').append(article)
@@ -173,6 +194,7 @@ if (wedding.demo) {
       form.elements.guest.value = saved.name
       form.elements.attendance.value = saved.attendance
       form.elements.count.value = saved.count || 1
+      form.elements.wish.value = saved.wish || ''
       status.textContent = 'Konfirmasi demo tersimpan di perangkat ini.'
     }
   } catch {
@@ -190,6 +212,8 @@ if (wedding.demo) {
       return
     }
     const response = { name, attendance: data.get('attendance'), count: Number(data.get('count')) }
+    const wish = data.get('wish').trim()
+    if (wish) response.wish = wish
     try {
       localStorage.setItem(storageKey, JSON.stringify(response))
       status.textContent = 'Terima kasih. Konfirmasi demo tersimpan di perangkat ini.'
@@ -241,6 +265,7 @@ if (wedding.music) {
 const countdown = byId('countdown')
 const starts = wedding.events.map(({ startsAt }) => Date.parse(startsAt)).filter(Number.isFinite)
 const weddingStart = Math.min(...starts)
+if (!Number.isFinite(weddingStart) || weddingStart <= Date.now()) countdown.parentElement.hidden = true
 if (Number.isFinite(weddingStart) && weddingStart > Date.now()) {
   countdown.hidden = false
   const updateTimer = () => {
@@ -262,6 +287,7 @@ function revealInvitation(target = byId('pembuka')) {
   document.body.classList.remove('cover-locked')
   cover.inert = true
   for (const node of content) node.inert = false
+  if (target.id === 'pembuka') target.classList.add('scene-playing')
   const finish = () => {
     cover.hidden = true
     watchReveals()
@@ -300,7 +326,7 @@ if (shortcut && shortcut !== cover) {
 
 let observer
 const revealGroups = [
-  ['.opening-details', '[data-motion]'],
+  ['.letter', '[data-motion]'],
   ['.welcome', 'h2, .couple article'],
   ['.story', 'h2, #chapters article'],
   ['.schedule', 'h2, #shared-venue, .events article'],
