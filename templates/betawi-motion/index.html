@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Undangan pernikahan.">
+  <meta name="theme-color" content="#7d9a5b">
+  <title>Undangan Pernikahan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Crimson+Pro:wght@400;600&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap">
+  <link rel="preload" as="image" href="./templates/betawi-motion/assets/sky.webp">
+  <link rel="preload" as="image" href="./templates/betawi-motion/assets/house.webp">
+  <link rel="preload" as="image" href="./templates/betawi-motion/assets/flowers.webp">
+  <link rel="stylesheet" href="./templates/betawi-motion/style.css">
+  <script type="module" src="./templates/betawi-motion/invitation.js"></script>
+</head>
+<body class="locked">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-lace" viewBox="-50 -50 100 100">
+    <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <g id="i-lace-arm"><path d="M0,0 V-44 M0,-14 l-8,-8 M0,-14 l8,-8 M0,-28 l-7,-7 M0,-28 l7,-7 M0,-40 l-4,-4 M0,-40 l4,-4"/><circle cy="-46" r="2.4"/></g>
+      <use href="#i-lace-arm" transform="rotate(45)"/><use href="#i-lace-arm" transform="rotate(90)"/><use href="#i-lace-arm" transform="rotate(135)"/>
+      <use href="#i-lace-arm" transform="rotate(180)"/><use href="#i-lace-arm" transform="rotate(225)"/><use href="#i-lace-arm" transform="rotate(270)"/><use href="#i-lace-arm" transform="rotate(315)"/>
+      <circle r="6"/><circle r="12" stroke-dasharray="2 4"/>
+    </g>
+  </symbol>
+  <symbol id="i-bird" viewBox="0 0 24 12"><path d="M0,6 Q6,0 12,6 Q18,0 24,6 Q18,3 12,8 Q6,3 0,6 Z" fill="currentColor"/></symbol>
+  <symbol id="i-awan" viewBox="0 0 120 50">
+    <g fill="#fff" stroke="#b9bfca" stroke-width="1.4" stroke-linecap="round">
+      <path d="M8,40 C2,40 2,30 10,30 C8,20 20,16 26,22 C28,10 44,8 50,18 C56,6 76,8 78,20 C86,14 100,18 98,28 C110,26 116,40 104,40 Z"/>
+      <path d="M26,22 c4,4 2,10 -4,10 c-4,0 -5,-5 -2,-6 M50,18 c3,6 0,12 -6,12 c-5,0 -6,-6 -2,-7 M78,20 c2,6 -2,11 -7,10 c-4,-1 -4,-6 -1,-7 M98,28 c0,5 -4,7 -8,6" fill="none"/>
+    </g>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z" fill="currentColor"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M20 7h-2.2A3 3 0 0 0 12 4.4 3 3 0 0 0 6.2 7H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8h1a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1Zm-5-1a1 1 0 0 1 0 2h-2a2 2 0 0 1 2-2ZM9 6a2 2 0 0 1 2 2H9a1 1 0 0 1 0-2Zm-4 3h6v1H5Zm2 3h4v7H7Zm10 7h-4v-7h4Zm2-9h-6V9h6Z" fill="currentColor"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="m7.5 12.5 3 3 6-6.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="stage">
+  <!-- Cover -->
+  <header class="cover" id="sampul">
+    <div class="cover-bg" aria-hidden="true">
+      <span class="cover-sky"></span>
+      <span class="cover-forest"></span>
+      <span class="cover-flowers"></span>
+      <span class="cover-hang l"></span><span class="cover-hang r"></span>
+      <span class="gigi"></span>
+    </div>
+    <div class="cover-copy">
+      <p class="kicker cover-in" style="--d:.2s">The Wedding Of</p>
+      <figure class="arch cover-in" style="--d:.35s"><img data-cover-photo alt=""></figure>
+      <h1 class="serif-names cover-in" style="--d:.6s" data-names></h1>
+      <p class="dear cover-in" style="--d:.75s">Kepada Yth.</p>
+      <p class="guest cover-in" style="--d:.85s" id="guest">Tamu Undangan</p>
+      <button class="pill cover-in" style="--d:1s" id="open-invitation" type="button">Buka Undangan</button>
+    </div>
+  </header>
+
+  <main id="isi">
+    <!-- Opening scene -->
+    <section class="hero" id="pembuka" tabindex="-1" aria-labelledby="hero-names">
+      <div class="scene" aria-hidden="true">
+        <div class="dolly">
+          <span class="layer sky"></span>
+          <div class="awan">
+            <svg style="--x:6%;--y:9%;--w:84px;--dur:38s"><use href="#i-awan"/></svg>
+            <svg style="--x:58%;--y:5%;--w:64px;--dur:44s"><use href="#i-awan"/></svg>
+            <svg style="--x:72%;--y:17%;--w:76px;--dur:34s"><use href="#i-awan"/></svg>
+            <svg style="--x:28%;--y:20%;--w:56px;--dur:48s"><use href="#i-awan"/></svg>
+            <svg style="--x:40%;--y:12%;--w:46px;--dur:40s"><use href="#i-awan"/></svg>
+          </div>
+          <span class="layer mount" data-depth=".08"><i></i></span>
+          <span class="layer hills" data-depth=".14"><i></i></span>
+          <span class="grow pinktree l" data-depth=".18"><i></i></span>
+          <span class="grow pinktree r" data-depth=".18"><i></i></span>
+          <span class="grow banana l" data-depth=".22"><i></i></span>
+          <span class="grow banana r" data-depth=".22"><i></i></span>
+          <span class="layer house" data-depth=".26"><i></i></span>
+          <span class="kembang l" data-depth=".3"><i><b></b></i></span>
+          <span class="kembang r" data-depth=".3"><i><b></b></i></span>
+          <span class="layer meadow" data-depth=".34"><i></i></span>
+        </div>
+        <div class="laces">
+          <svg style="--x:10%;--y:30%;--s:40px;--d:0s"><use href="#i-lace"/></svg>
+          <svg style="--x:80%;--y:28%;--s:46px;--d:.15s"><use href="#i-lace"/></svg>
+          <svg style="--x:20%;--y:46%;--s:30px;--d:.3s"><use href="#i-lace"/></svg>
+          <svg style="--x:74%;--y:48%;--s:34px;--d:.2s"><use href="#i-lace"/></svg>
+        </div>
+        <div class="birds">
+          <svg style="--top:12%;--dur:16s;--delay:1.2s;--size:12px"><use href="#i-bird"/></svg>
+          <svg style="--top:19%;--dur:21s;--delay:2.6s;--size:9px"><use href="#i-bird"/></svg>
+          <svg style="--top:8%;--dur:24s;--delay:6s;--size:10px"><use href="#i-bird"/></svg>
+        </div>
+        <span class="mist"></span>
+        <span class="bloom" data-depth=".5"><i></i></span>
+        <span class="hang l"><i></i></span>
+        <span class="hang r"><i></i></span>
+        <span class="gigi"></span>
+        <div class="robins">
+          <svg class="robin" viewBox="0 0 44 30" style="--x:10%;--y:41%;--w:38px;--from:-60vw;--d:0s"><g class="r-body"><path d="M4,15 L-2,11 L0,18 Z" fill="#7b5a3c"/><ellipse cx="18" cy="17" rx="13" ry="8" fill="#9b6b45"/><ellipse cx="20" cy="20" rx="9" ry="5.5" fill="#f08a3c"/><circle cx="30" cy="12" r="6.5" fill="#8a5e3b"/><circle cx="32" cy="11" r="1.3" fill="#1d1a17"/><path d="M36,12 l6,1.2 -6,1.6 Z" fill="#e0b04a"/></g><path class="r-wing" d="M14,14 C18,2 26,-2 30,2 C26,6 22,12 20,16 Z" fill="#6e4d33"/></svg>
+          <svg class="robin" viewBox="0 0 44 30" style="--x:78%;--y:44%;--w:34px;--from:-60vw;--d:.25s;scale:-1 1"><g class="r-body"><path d="M4,15 L-2,11 L0,18 Z" fill="#7b5a3c"/><ellipse cx="18" cy="17" rx="13" ry="8" fill="#9b6b45"/><ellipse cx="20" cy="20" rx="9" ry="5.5" fill="#f08a3c"/><circle cx="30" cy="12" r="6.5" fill="#8a5e3b"/><circle cx="32" cy="11" r="1.3" fill="#1d1a17"/><path d="M36,12 l6,1.2 -6,1.6 Z" fill="#e0b04a"/></g><path class="r-wing" d="M14,14 C18,2 26,-2 30,2 C26,6 22,12 20,16 Z" fill="#6e4d33"/></svg>
+          <svg class="robin" viewBox="0 0 44 30" style="--x:62%;--y:24%;--w:26px;--from:-50vw;--d:.6s;scale:-1 1"><g class="r-body"><path d="M4,15 L-2,11 L0,18 Z" fill="#7b5a3c"/><ellipse cx="18" cy="17" rx="13" ry="8" fill="#9b6b45"/><ellipse cx="20" cy="20" rx="9" ry="5.5" fill="#f08a3c"/><circle cx="30" cy="12" r="6.5" fill="#8a5e3b"/><circle cx="32" cy="11" r="1.3" fill="#1d1a17"/><path d="M36,12 l6,1.2 -6,1.6 Z" fill="#e0b04a"/></g><path class="r-wing" d="M14,14 C18,2 26,-2 30,2 C26,6 22,12 20,16 Z" fill="#6e4d33"/></svg>
+        </div>
+      </div>
+      <div class="hero-copy" data-depth="-.25">
+        <div class="hero-inner">
+          <p class="kicker">The Wedding Of</p>
+          <h2 class="script-names" id="hero-names"><span data-name="0"></span> <span class="amp">&amp;</span><br><span data-name="1"></span></h2>
+          <p class="hero-date" data-short-date></p>
+          <a class="pill hero-cta" href="#save-date">Save The Date</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- With love -->
+    <section class="with-love" id="pembuka-ayat">
+      <span class="gigi edge" data-reveal="gigi" aria-hidden="true"></span>
+      <img class="castle float" src="./templates/betawi-motion/assets/pavilion.webp" alt="" data-reveal="zoom">
+      <h2 class="caps-title" data-reveal="blur">With Love</h2>
+      <blockquote data-reveal="up" style="--d:.15s"><p id="quote-text"></p><cite id="quote-source"></cite></blockquote>
+    </section>
+
+    <!-- Couple -->
+    <section class="couple-section" id="mempelai">
+      <p class="lede" id="invite-line" data-reveal="up"></p>
+      <div id="couple"></div>
+    </section>
+
+    <!-- Save the date -->
+    <section class="save-date" id="save-date">
+      <figure class="save-photo" data-reveal="zoom-out"><img data-feature-photo alt="" loading="lazy"></figure>
+      <h2 class="script save-title" data-reveal="blur">Save The Date</h2>
+      <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur menuju hari pernikahan" hidden>
+        <div data-reveal="up" style="--d:0s"><strong data-unit="days">0</strong><span>Hari</span></div>
+        <div data-reveal="up" style="--d:.1s"><strong data-unit="hours">0</strong><span>Jam</span></div>
+        <div data-reveal="up" style="--d:.2s"><strong data-unit="minutes">0</strong><span>Menit</span></div>
+        <div data-reveal="up" style="--d:.3s"><strong data-unit="seconds">0</strong><span>Detik</span></div>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section class="blue-band events-band" id="jadwal" tabindex="-1">
+      <span class="gigi edge" data-reveal="gigi" aria-hidden="true"></span>
+      <p class="band-lede" data-reveal="up" id="attendance-note" hidden></p>
+      <article class="frame-card tall" data-reveal="rise">
+        <div class="panel">
+          <img class="castle small float" src="./templates/betawi-motion/assets/pavilion.webp" alt="">
+          <div id="events"></div>
+        </div>
+        <span class="card-flowers" aria-hidden="true"></span>
+      </article>
+    </section>
+
+    <!-- Love story -->
+    <section class="story" id="cerita" hidden>
+      <span class="leaf-edge l" aria-hidden="true"></span><span class="leaf-edge r" aria-hidden="true"></span>
+      <h2 class="script" data-reveal="blur">Love Story</h2>
+      <figure class="story-photo" data-reveal="zoom"><img data-story-photo alt="" loading="lazy"></figure>
+      <div id="chapters"></div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section" id="galeri" hidden>
+      <h2 class="script" data-reveal="blur">Galeri Foto</h2>
+      <div class="gallery" id="photos"></div>
+    </section>
+
+    <!-- Stream, gift, wishes -->
+    <section class="blue-band cards-band" id="hadiah">
+      <span class="gigi edge" data-reveal="gigi" aria-hidden="true"></span>
+      <article class="glass-card" id="stream" data-reveal="rise" hidden>
+        <span class="leaf-corner" aria-hidden="true"></span>
+        <h2 class="script">Live Streaming</h2>
+        <p id="stream-text"></p>
+        <p class="meta" id="stream-meta"></p>
+        <a class="pill small" id="stream-link" target="_blank" rel="noopener" hidden>Klik Disini</a>
+      </article>
+
+      <article class="glass-card" id="gift" data-reveal="rise" hidden>
+        <span class="leaf-corner" aria-hidden="true"></span>
+        <h2 class="script">Wedding Gift</h2>
+        <p id="gift-text"></p>
+        <button class="pill small" id="gift-toggle" type="button" aria-expanded="false" aria-controls="gift-list"><svg class="ico"><use href="#i-gift"/></svg> Klik Disini</button>
+        <div class="gift-list" id="gift-list" hidden></div>
+      </article>
+
+      <article class="glass-card" id="rsvp" data-reveal="rise" tabindex="-1">
+        <span class="leaf-corner" aria-hidden="true"></span>
+        <h2 class="script">Ucapan &amp; Doa</h2>
+        <p>Berikan ucapan, harapan, dan doa kepada kedua mempelai.</p>
+        <p class="note" id="demo-note" hidden><strong>Mode contoh.</strong> Ucapan hanya tersimpan di perangkat ini.</p>
+        <p class="count-line"><span id="wish-total">0</span> Ucapan</p>
+        <div class="tally">
+          <div class="yes"><strong id="count-yes">0</strong><span>Hadir</span></div>
+          <div class="no"><strong id="count-no">0</strong><span>Tidak Hadir</span></div>
+        </div>
+        <form id="reply" novalidate>
+          <label class="sr-only" for="f-name">Nama</label>
+          <input id="f-name" name="guest" placeholder="Nama" autocomplete="name" required maxlength="80">
+          <label class="sr-only" for="f-wish">Ucapan</label>
+          <textarea id="f-wish" name="wish" placeholder="Ucapan" rows="3" required maxlength="500"></textarea>
+          <label class="sr-only" for="f-att">Konfirmasi kehadiran</label>
+          <select id="f-att" name="attendance" required>
+            <option value="" selected disabled>Konfirmasi Kehadiran</option>
+            <option value="yes">Hadir</option>
+            <option value="no">Tidak Hadir</option>
+          </select>
+          <button class="send" type="submit">Kirim</button>
+          <p class="status" id="reply-status" role="status"></p>
+        </form>
+        <ol class="wishes" id="wishes" aria-label="Ucapan tamu"></ol>
+      </article>
+    </section>
+
+    <!-- Closing -->
+    <section class="closing" id="penutup">
+      <div class="closing-bg" aria-hidden="true"><span class="c-forest"></span><span class="c-flowers"></span><span class="kembang l"><i><b></b></i></span><span class="kembang r"><i><b></b></i></span></div>
+      <figure class="arch tall" data-reveal="zoom"><img data-closing-photo alt="" loading="lazy"></figure>
+      <p class="closing-text" id="closing-text" data-reveal="up"></p>
+      <p class="kicker" data-reveal="up" style="--d:.1s">Kami yang berbahagia</p>
+      <p class="serif-names" data-names data-reveal="blur" style="--d:.2s"></p>
+    </section>
+  </main>
+
+  <button class="music" id="music" type="button" aria-pressed="false" aria-label="Putar musik" hidden><svg><use href="#i-disc"/></svg></button>
+</div>
+
+<dialog class="viewer" id="viewer" aria-label="Galeri foto">
+  <button class="viewer-close" id="viewer-close" type="button" aria-label="Tutup">×</button>
+  <img id="viewer-img" alt="">
+  <div class="viewer-nav"><button id="viewer-prev" type="button" aria-label="Foto sebelumnya">‹</button><span id="viewer-pos" aria-live="polite"></span><button id="viewer-next" type="button" aria-label="Foto berikutnya">›</button></div>
+</dialog>
+<noscript><p style="padding:2rem;text-align:center">Aktifkan JavaScript untuk membuka undangan ini.</p></noscript>
+</body>
+</html>
