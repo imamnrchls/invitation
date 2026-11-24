@@ -1,15 +1,15 @@
-"""Make independent motion layers from Olive Garden artwork. Requires Pillow."""
+"""Make independent motion layers from the garden artwork. Requires Pillow."""
 
 from pathlib import Path
 
 from PIL import Image, ImageChops, ImageDraw, ImageOps
 
 theme = Path(__file__).resolve().parents[1]
-garden = theme.parent / "olive-garden" / "assets"
+source = Path(__file__).resolve().parent / "source"
 assets = theme / "assets"
 assets.mkdir(exist_ok=True)
-landscape = Image.open(garden / "garden-landscape.webp").convert("RGB")
-botanical = Image.open(garden / "botanical.webp").convert("RGBA")
+landscape = Image.open(theme / "assets" / "backdrop.webp").convert("RGB")
+botanical = Image.open(source / "botanical.webp").convert("RGBA")
 
 
 def save(image, name):
