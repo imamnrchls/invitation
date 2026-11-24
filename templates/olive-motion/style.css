@@ -20,7 +20,15 @@
 body {
   background: linear-gradient(#20291d26, #20291d77), url('./assets/backdrop.webp') center / cover fixed;
 }
-.stage { box-shadow: 0 0 60px #20291d55; }
+.stage {
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+#isi > section:not(.closing) {
+  width: var(--col);
+  margin-inline: auto;
+}
 
 .kicker { font-family: var(--sans); font-size: .875rem; font-weight: 700; letter-spacing: .15em; }
 .serif-names, .script-names, .script, .event h3 { font-weight: 600; color: var(--navy); }
@@ -134,13 +142,18 @@ body.opened .bloom i {
 .gallery a img { object-fit: contain; }
 .gallery a:hover img { transform: none; }
 .story-photo, .gallery a { background: var(--cream); box-shadow: 0 8px 24px #20291d26; }
-/* Keep the farewell artwork in its own row above the music control. */
+/* Let the closing scene span the viewport while keeping its contents in frame. */
 .closing {
-  padding: 3rem clamp(1rem, 5vw, 1.8rem) calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  min-height: 100svh;
+  padding: clamp(2rem, 6svh, 4rem) 0 calc(4.75rem + env(safe-area-inset-bottom, 0px));
   align-content: center;
+  background-color: var(--paper);
+}
+.closing > :not(.closing-bg) {
+  max-width: calc(100% - 2rem);
 }
 .closing .arch.tall {
-  width: min(100%, 24rem);
+  width: min(86%, 27rem);
   aspect-ratio: auto;
   border-radius: 16px;
 }
@@ -152,8 +165,8 @@ body.opened .bloom i {
   position: relative;
   order: 1;
   margin-top: .5rem;
-  width: min(100%, 26rem);
-  aspect-ratio: 960 / 680;
+  width: min(100%, 48rem);
+  height: clamp(12rem, 42svh, 29rem);
   pointer-events: none;
 }
 .closing-bg .c-forest, .closing-bg .c-flowers {
@@ -165,7 +178,7 @@ body.opened .bloom i {
   mask-image: linear-gradient(#000 72%, transparent 99%);
 }
 .closing-bg .c-flowers { bottom: 4%; }
-.closing .palm { width: 29%; bottom: 8%; }
+.closing .palm { width: min(29%, 8rem); max-height: 82%; bottom: 8%; }
 .closing .palm.left { left: 4%; }
 .closing .palm.right { right: 4%; }
 .music { background: var(--deep); color: var(--paper); border-color: var(--gold-soft); }
