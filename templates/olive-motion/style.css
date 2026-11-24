@@ -48,7 +48,6 @@ body {
 }
 .guest { overflow-wrap: anywhere; }
 .arch { width: min(46vw, 210px, 29svh); border-color: var(--paper); outline: 1px solid #a88b52; box-shadow: 0 10px 24px #303b2829; }
-.arch.tall { width: min(58%, 240px); }
 .cover-forest { bottom: 0; height: 62%; opacity: .54; }
 .cover-flowers { bottom: 0; height: 45%; }
 .hero { min-height: 0; }
@@ -57,9 +56,9 @@ body {
 .near { bottom: 18%; aspect-ratio: 960 / 385; }
 .forest { bottom: 0; aspect-ratio: 960 / 680; }
 .palm { bottom: 8%; width: 29%; max-height: 46%; aspect-ratio: 238 / 480; }
-.palm.left, .closing .palm.left { left: 1%; }
-.palm.right, .closing .palm.right { right: 1%; }
-.bloom, .c-flowers { left: 0; right: 0; bottom: 0; }
+.palm.left { left: 1%; }
+.palm.right { right: 1%; }
+.bloom { left: 0; right: 0; bottom: 0; }
 .bloom i { transform-origin: 50% 100%; }
 .hero-copy { top: clamp(.5rem, 24svh, calc(100% - 16rem)); }
 body.opened .dolly {
@@ -135,9 +134,40 @@ body.opened .bloom i {
 .gallery a img { object-fit: contain; }
 .gallery a:hover img { transform: none; }
 .story-photo, .gallery a { background: var(--cream); box-shadow: 0 8px 24px #20291d26; }
-.closing .palm { width: 31%; bottom: 2%; }
-.closing { padding-bottom: min(62vw, 290px); }
-.c-forest { aspect-ratio: 960 / 680; }
+/* Keep the farewell artwork in its own row above the music control. */
+.closing {
+  padding: 3rem clamp(1rem, 5vw, 1.8rem) calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  align-content: center;
+}
+.closing .arch.tall {
+  width: min(100%, 24rem);
+  aspect-ratio: auto;
+  border-radius: 16px;
+}
+.closing .arch img {
+  height: auto;
+  object-fit: contain;
+}
+.closing-bg {
+  position: relative;
+  order: 1;
+  margin-top: .5rem;
+  width: min(100%, 26rem);
+  aspect-ratio: 960 / 680;
+  pointer-events: none;
+}
+.closing-bg .c-forest, .closing-bg .c-flowers {
+  inset: 0;
+  aspect-ratio: auto;
+  background-size: contain;
+}
+.closing-bg .c-forest {
+  mask-image: linear-gradient(#000 72%, transparent 99%);
+}
+.closing-bg .c-flowers { bottom: 4%; }
+.closing .palm { width: 29%; bottom: 8%; }
+.closing .palm.left { left: 4%; }
+.closing .palm.right { right: 4%; }
 .music { background: var(--deep); color: var(--paper); border-color: var(--gold-soft); }
 .viewer { background: var(--deep); }
 .viewer::backdrop { background: #20291de0; }
