@@ -101,24 +101,38 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 }
 .cover.is-overlay[inert] { pointer-events: none; }
 .opening {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  place-items: center;
+  min-height: 100vh;
   min-height: 100svh;
-  background: var(--deep);
-  color: var(--ivory);
+  padding: clamp(3rem, 9svh, 6rem) clamp(1.5rem, 7vw, 5rem);
+  color: var(--ink);
+  background: var(--paper);
 }
-.opening-photo {
-  background: var(--cover-image, none) center / cover, #3b4732;
+.opening::after {
+  content: '';
+  position: absolute;
+  inset: clamp(.65rem, 2.4vw, 1.65rem);
+  border: 1px solid #fbefc9b8;
+  outline: 1px solid #8b73477a;
+  outline-offset: -.3rem;
+  pointer-events: none;
 }
 .opening-details {
   display: grid;
   justify-items: center;
-  align-content: center;
-  padding: clamp(2rem, 6vw, 6rem) 1.25rem;
+  width: min(100%, 35rem);
   text-align: center;
 }
-.opening-details h2 { font-size: clamp(3.25rem, 7vw, 7rem); margin: 0; }
-.opening-details .eyebrow, .opening-link { color: var(--gold); }
+.opening-details h2 {
+  max-width: 15ch;
+  margin: 0;
+  font-size: clamp(2.55rem, 6vw, 5.25rem);
+  font-style: italic;
+}
+.opening-link { color: #634822; }
 .opening-shortcuts { display: flex; flex-wrap: wrap; justify-content: center; gap: .25rem 1rem; }
 .opening-shortcuts a { padding: .65rem .2rem; font-size: .875rem; text-underline-offset: .22em; }
 .opening-link { padding: .7rem .5rem; text-underline-offset: .23em; }
@@ -166,8 +180,6 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 .music[aria-pressed="true"] { color: var(--gold); }
 
 @media (max-width: 670px) {
-  .opening { grid-template-columns: 1fr; grid-template-rows: minmax(17rem, 52svh) 1fr; }
-  .opening-photo { background-position: center 40%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .thumbnail img, .button, .music { transition: none; }
@@ -226,7 +238,7 @@ footer { padding: 3rem 1.25rem; text-align: center; }
   outline-offset: .28rem;
   pointer-events: none;
 }
-.cover-copy::after, .opening-details::after {
+.cover-copy::after {
   content: '';
   position: absolute;
   inset: auto auto 0 0;
@@ -272,18 +284,6 @@ footer { padding: 3rem 1.25rem; text-align: center; }
   color: var(--ivory);
   background: #35452b;
 }
-.opening-photo {
-  background-position: 50% center;
-}
-.opening-details {
-  position: relative;
-  isolation: isolate;
-  color: var(--ink);
-  background: radial-gradient(ellipse at 50% 42%, #fffcf3, var(--paper) 80%);
-}
-.opening-details::after { opacity: .38; }
-.opening-details .eyebrow, .opening-details .opening-link { color: #74562c; }
-.opening-details h2 { font-style: italic; }
 .countdown div { border-color: #a6844f80; border-radius: 2rem 2rem .2rem .2rem; }
 .countdown strong { color: #4f593d; }
 .welcome h2, .story h2, .schedule h2, .keepsakes h2, .reply h2 { font-style: italic; }
@@ -334,12 +334,8 @@ footer .wedding-seal { color: var(--gold); }
   .cover .ornament { font-size: 1.6rem; }
   .cover-date { margin-block: .65rem .3rem; }
   .cover .recipient { margin-block: .2rem .8rem; }
-  .opening-details { padding-block: 2.5rem; }
 }
 
-.opening { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); min-height: min(44rem, 100svh); }
-.opening-details { padding-block: clamp(3rem, 7vw, 6rem); }
-.opening-details h2 { max-width: 13ch; font-size: clamp(3rem, 6vw, 5.25rem); }
 .opening-details .intro { margin-bottom: 1rem; }
 .opening-blessing { max-width: 32rem; }
 .opening-blessing .ornament { color: var(--foil); font-size: 1.6rem; }
@@ -354,17 +350,22 @@ footer .wedding-seal { color: var(--gold); }
 .schedule-reply { margin-top: 1.65rem; }
 .event-time { font-weight: 700; }
 .demo-note { margin: 0 auto 1rem; max-width: 28rem; }
-@media (max-width: 670px) {
-  .opening { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .opening-photo { min-height: clamp(13rem, 38svh, 21rem); }
-}
 
 /* The illustration is assembled in independent depth planes. */
 .opening-photo {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
-  isolation: isolate;
   background: #e9e3ca;
+  pointer-events: none;
+}
+.opening-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse min(36rem, 65%) min(25rem, 72%) at center,
+    #fffaf0f7 12%, #fff8e9e8 54%, #fff8e97a 79%, #fff8e900 100%);
 }
 .opening-photo > span { position: absolute; pointer-events: none; }
 .scene-landscape {
@@ -372,18 +373,25 @@ footer .wedding-seal { color: var(--gold); }
   background: url('./assets/garden-landscape.webp') center 60% / cover no-repeat;
 }
 .scene-bough {
-  inset: -4% 0 auto auto;
-  width: 55%;
+  inset: -2% 0 auto auto;
+  width: clamp(11rem, 37vw, 27rem);
   aspect-ratio: 3 / 2;
   background: var(--botanical) center / contain no-repeat;
   transform: rotate(180deg);
   opacity: .58;
 }
 .scene-blossoms {
-  inset: auto auto -6% -3%;
-  width: 92%;
+  inset: auto auto -4% -2%;
+  width: clamp(15rem, 47vw, 39rem);
   aspect-ratio: 3 / 2;
   background: var(--botanical) center / contain no-repeat;
+}
+@media (max-width: 670px) {
+  .scene-landscape { background-position: 47% center; }
+  .opening-photo::after {
+    background: radial-gradient(ellipse 94% 48% at center,
+      #fffaf0fa 20%, #fff8e9ed 67%, #fff8e978 88%, #fff8e900);
+  }
 }
 .scene-enter .scene-landscape { animation: landscape-in 1.75s .2s cubic-bezier(.2,.7,.25,1) both; }
 .scene-enter .scene-bough { animation: bough-in 1.25s .42s cubic-bezier(.2,.7,.25,1) both; }
