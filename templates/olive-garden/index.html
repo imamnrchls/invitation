@@ -27,15 +27,19 @@
 
   <main>
     <section class="opening" id="pembuka" tabindex="-1" aria-label="Pembuka undangan">
-      <div class="opening-photo" aria-hidden="true" hidden></div>
+      <div class="opening-photo" aria-hidden="true">
+        <span class="scene-landscape"></span>
+        <span class="scene-bough"></span>
+        <span class="scene-blossoms"></span>
+      </div>
       <div class="opening-details">
-        <h2>Dengan sukacita, kami mengundang Anda</h2>
-        <p class="intro" id="welcome"></p>
-        <div class="opening-blessing" id="blessing" hidden>
+        <h2 data-motion>Dengan sukacita, kami mengundang Anda</h2>
+        <p class="intro" id="welcome" data-motion></p>
+        <div class="opening-blessing" id="blessing" data-motion hidden>
           <span class="ornament" aria-hidden="true">❧</span>
           <blockquote id="blessing-text"></blockquote>
         </div>
-        <div class="countdown" id="countdown" role="timer" aria-label="Hitung mundur pernikahan" hidden>
+        <div class="countdown" id="countdown" data-motion role="timer" aria-label="Hitung mundur pernikahan" hidden>
           <div><strong data-unit="days">00</strong><span>Hari</span></div>
           <div><strong data-unit="hours">00</strong><span>Jam</span></div>
           <div><strong data-unit="minutes">00</strong><span>Menit</span></div>

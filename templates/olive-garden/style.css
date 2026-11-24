@@ -337,9 +337,7 @@ footer .wedding-seal { color: var(--gold); }
   .opening-details { padding-block: 2.5rem; }
 }
 
-.opening { grid-template-columns: 1fr; min-height: min(44rem, 100svh); }
-.opening.has-photo { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
-.opening-photo { background: var(--opening-image) center / cover; }
+.opening { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); min-height: min(44rem, 100svh); }
 .opening-details { padding-block: clamp(3rem, 7vw, 6rem); }
 .opening-details h2 { max-width: 13ch; font-size: clamp(3rem, 6vw, 5.25rem); }
 .opening-details .intro { margin-bottom: 1rem; }
@@ -357,7 +355,66 @@ footer .wedding-seal { color: var(--gold); }
 .event-time { font-weight: 700; }
 .demo-note { margin: 0 auto 1rem; max-width: 28rem; }
 @media (max-width: 670px) {
-  .opening, .opening.has-photo { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .opening-details { grid-row: 1; }
-  .opening-photo { min-height: 14rem; }
+  .opening { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .opening-photo { min-height: clamp(13rem, 38svh, 21rem); }
+}
+
+/* The illustration is assembled in independent depth planes. */
+.opening-photo {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #e9e3ca;
+}
+.opening-photo > span { position: absolute; pointer-events: none; }
+.scene-landscape {
+  inset: 0;
+  background: url('./assets/garden-landscape.webp') center 60% / cover no-repeat;
+}
+.scene-bough {
+  inset: -4% 0 auto auto;
+  width: 55%;
+  aspect-ratio: 3 / 2;
+  background: var(--botanical) center / contain no-repeat;
+  transform: rotate(180deg);
+  opacity: .58;
+}
+.scene-blossoms {
+  inset: auto auto -6% -3%;
+  width: 92%;
+  aspect-ratio: 3 / 2;
+  background: var(--botanical) center / contain no-repeat;
+}
+.scene-enter .scene-landscape { animation: landscape-in 1.75s .2s cubic-bezier(.2,.7,.25,1) both; }
+.scene-enter .scene-bough { animation: bough-in 1.25s .42s cubic-bezier(.2,.7,.25,1) both; }
+.scene-enter .scene-blossoms { animation: blossoms-in 1.3s .55s cubic-bezier(.2,.7,.25,1) both; }
+@keyframes landscape-in { from { transform: scale(1.12) translateY(2%); } }
+@keyframes bough-in { from { opacity: 0; transform: translate(7%, -9%) rotate(174deg); } }
+@keyframes blossoms-in { from { opacity: 0; transform: translate(-5%, 14%) rotate(-3deg); } }
+
+.cover.is-overlay .cover-portrait { animation: cover-photo-in 1.3s cubic-bezier(.2,.7,.25,1) both; }
+.cover.is-overlay .wedding-seal { animation: seal-in .7s .12s ease-out both; }
+.cover.is-overlay .cover-copy h1 { animation: card-ink-in .85s .15s ease-out both; }
+@keyframes cover-photo-in { from { opacity: .55; scale: 1.025; } }
+@keyframes seal-in { from { opacity: .35; transform: rotate(-11deg) scale(.88); } }
+@keyframes card-ink-in { from { opacity: .55; translate: 0 .4rem; } }
+
+.couple article { position: relative; isolation: isolate; }
+.couple article::after {
+  content: '';
+  position: absolute;
+  inset: auto auto 0 0;
+  width: min(7.5rem, 28%);
+  aspect-ratio: 3 / 2;
+  background: var(--botanical) center / contain no-repeat;
+  opacity: .42;
+  pointer-events: none;
+  z-index: -1;
+}
+.couple article:nth-child(even)::after { inset: auto 0 0 auto; transform: scaleX(-1); }
+@media (prefers-reduced-motion: reduce) {
+  .cover.is-overlay .cover-portrait,
+  .cover.is-overlay .wedding-seal,
+  .cover.is-overlay .cover-copy h1,
+  .scene-enter .opening-photo > span { animation: none !important; }
 }

@@ -22,12 +22,6 @@ if (wedding.blessing) {
   byId('blessing-text').textContent = wedding.blessing
   byId('blessing').hidden = false
 }
-const openingPhoto = wedding.photos?.[1]
-if (openingPhoto) {
-  byId('pembuka').classList.add('has-photo')
-  byId('pembuka').style.setProperty('--opening-image', 'url("' + asset(openingPhoto.file) + '")')
-  byId('pembuka').querySelector('.opening-photo').hidden = false
-}
 byId('welcome').textContent = wedding.welcome
 byId('deadline').textContent = wedding.replyBy
 
@@ -271,11 +265,15 @@ function revealInvitation(target = byId('pembuka')) {
   document.body.classList.remove('cover-locked')
   cover.inert = true
   for (const node of content) node.inert = false
-  const finish = () => { cover.hidden = true }
+  const finish = () => {
+    cover.hidden = true
+    watchReveals()
+  }
+  if (target.id === 'pembuka') playScene()
   if (!reducedMotion?.matches && cover.animate) {
     const animation = cover.animate(
-      [{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-100%)', opacity: 0 }],
-      { duration: 780, easing: 'cubic-bezier(.65, 0, .25, 1)', fill: 'forwards' },
+      [{ transform: 'translateY(0)', opacity: 1 }, { offset: .78, opacity: .96 }, { transform: 'translateY(-100%)', opacity: 0 }],
+      { duration: 730, easing: 'cubic-bezier(.68, .02, .22, 1)', fill: 'forwards' },
     )
     animation.finished.then(finish, finish)
   } else {
@@ -288,7 +286,10 @@ function revealInvitation(target = byId('pembuka')) {
 const shortcut = location.hash && byId(location.hash.slice(1))
 if (shortcut && shortcut !== cover) {
   cover.hidden = true
-  requestAnimationFrame(() => shortcut.scrollIntoView?.())
+  requestAnimationFrame(() => {
+    shortcut.scrollIntoView?.()
+    if (shortcut.id === 'pembuka') playScene()
+  })
 } else {
   cover.classList.add('is-overlay')
   document.body.classList.add('cover-locked')
@@ -304,18 +305,46 @@ if (shortcut && shortcut !== cover) {
   })
 }
 
-if (typeof IntersectionObserver === 'function' && !reducedMotion?.matches) {
-  const observer = new IntersectionObserver((entries) => {
+let observer
+const revealGroups = [
+  ['.opening-details', '[data-motion]'],
+  ['.welcome', 'h2, .couple article'],
+  ['.story', 'h2, #chapters article'],
+  ['.schedule', 'h2, #shared-venue, .events article'],
+  ['.keepsakes', 'h2, .thumbnail'],
+  ['.reply', 'h2, #reply-deadline, #reply'],
+  ['footer', '.wedding-seal, .signature'],
+]
+
+function playScene() {
+  if (reducedMotion?.matches) return
+  byId('pembuka').classList.add('scene-enter')
+}
+
+function watchReveals() {
+  if (observer || typeof IntersectionObserver !== 'function' || reducedMotion?.matches) return
+  observer = new IntersectionObserver((entries) => {
     for (const { target, isIntersecting } of entries) {
-      if (!isIntersecting || document.body.classList.contains('cover-locked')) continue
-      if (!reducedMotion?.matches) {
-        target.animate?.(
-          [{ opacity: .4, transform: 'translateY(14px)' }, { opacity: 1, transform: 'translateY(0)' }],
-          { duration: 460, easing: 'ease-out' },
-        )
-      }
+      if (!isIntersecting) continue
       observer.unobserve(target)
+      if (reducedMotion?.matches) continue
+      const { stagger, side } = target.dataset
+      target.animate?.(
+        [
+          { opacity: .15, translate: side + 'px 14px' },
+          { opacity: 1, translate: '0 0' },
+        ],
+        { duration: 560, delay: Number(stagger), easing: 'cubic-bezier(.2,.7,.25,1)', fill: 'backwards' },
+      )
     }
   }, { threshold: .12 })
-  document.querySelectorAll('.section h2, .events article, #chapters article, .thumbnail').forEach((node) => observer.observe(node))
+  for (const [group, items] of revealGroups) {
+    document.querySelectorAll(group + ' :is(' + items + ')').forEach((node, index) => {
+      node.dataset.stagger = String(Math.min(index, 3) * 85)
+      node.dataset.side = node.matches('.couple article, #chapters article, .thumbnail') ? (index % 2 ? '-16' : '16') : '0'
+      observer.observe(node)
+    })
+  }
 }
+
+if (!document.body.classList.contains('cover-locked')) watchReveals()
