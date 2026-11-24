@@ -14,9 +14,6 @@ document.querySelector('meta[name="description"]').content = 'Undangan pernikaha
 document.querySelectorAll('[data-names]').forEach((node) => { node.textContent = wedding.names })
 const initials = wedding.couple.map(({ name }) => Array.from(name.trim())[0]).filter(Boolean)
 document.querySelectorAll('[data-initials]').forEach((node) => { node.textContent = initials.join(' & ') })
-if (wedding.photos?.length) {
-  document.documentElement.style.setProperty('--cover-image', 'url("' + asset(wedding.photos[0].file) + '")')
-}
 document.querySelectorAll('[data-date]').forEach((node) => { node.textContent = wedding.date })
 if (wedding.blessing) {
   byId('blessing-text').textContent = wedding.blessing
@@ -269,7 +266,6 @@ function revealInvitation(target = byId('pembuka')) {
     cover.hidden = true
     watchReveals()
   }
-  if (target.id === 'pembuka') playScene()
   if (!reducedMotion?.matches && cover.animate) {
     const animation = cover.animate(
       [{ transform: 'translateY(0)', opacity: 1 }, { offset: .78, opacity: .96 }, { transform: 'translateY(-100%)', opacity: 0 }],
@@ -286,10 +282,7 @@ function revealInvitation(target = byId('pembuka')) {
 const shortcut = location.hash && byId(location.hash.slice(1))
 if (shortcut && shortcut !== cover) {
   cover.hidden = true
-  requestAnimationFrame(() => {
-    shortcut.scrollIntoView?.()
-    if (shortcut.id === 'pembuka') playScene()
-  })
+  requestAnimationFrame(() => shortcut.scrollIntoView?.())
 } else {
   cover.classList.add('is-overlay')
   document.body.classList.add('cover-locked')
@@ -315,11 +308,6 @@ const revealGroups = [
   ['.reply', 'h2, #reply-deadline, #reply'],
   ['footer', '.wedding-seal, .signature'],
 ]
-
-function playScene() {
-  if (reducedMotion?.matches) return
-  byId('pembuka').classList.add('scene-enter')
-}
 
 function watchReveals() {
   if (observer || typeof IntersectionObserver !== 'function' || reducedMotion?.matches) return

@@ -19,32 +19,8 @@ body { margin: 0; }
 a { color: inherit; }
 button, input, select { font: inherit; }
 :focus-visible { outline: 2px solid #a87931; outline-offset: 5px; }
-.cover {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: min(880px, 100svh);
-  padding: 8rem 2rem 6rem;
-  color: var(--ivory);
-  background: linear-gradient(180deg, #171e16b8, #20271955 35%, #181e17bd 85%), var(--cover-image, none) center 42% / cover, var(--deep);
-  isolation: isolate;
-  text-align: center;
-}
-.cover::before {
-  content: '';
-  position: absolute;
-  inset: 1.15rem;
-  border: 1px solid #e1c9928c;
-  pointer-events: none;
-  z-index: -1;
-}
-.top { position: absolute; inset: 2.3rem 3rem auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-.top a { text-decoration: none; }
-.top a:hover, footer a:hover { text-decoration: underline; }
-.top div { display: flex; gap: clamp(.8rem, 3vw, 2rem); font-size: .875rem; }
-.cover-copy { text-shadow: 0 2px 24px #141910; }
 .eyebrow { font-weight: 700; font-size: .875rem; letter-spacing: .18em; text-transform: uppercase; }
-.cover .eyebrow, .ornament { color: var(--gold); }
+.ornament { color: var(--gold); }
 h1, h2, h3, .signature { font-family: var(--serif); font-weight: 600; line-height: .98; }
 h1 { font-size: clamp(4.3rem, 12vw, 11rem); margin: .05em 0; }
 h2 { font-size: clamp(2.8rem, 7vw, 5.3rem); margin: .25em 0 .35em; }
@@ -78,9 +54,6 @@ input, select { min-width: 0; border: 1px solid #8d886f; background: #fffdf5; co
 footer { padding: 3rem 1.25rem; text-align: center; }
 .signature { font-style: italic; font-size: 3.3rem; color: var(--gold); margin: .2em 0; }
 @media (max-width: 600px) {
-  .cover { padding-inline: 1.65rem; }
-  .cover::before { inset: .65rem; }
-  .top { inset: 1.5rem 1.35rem auto; }
   .music { right: 1.35rem; bottom: 1.4rem; }
   .couple, .events, #chapters { grid-template-columns: 1fr; gap: .85rem; }
   .gallery { gap: .55rem; }
@@ -97,10 +70,9 @@ footer { padding: 3rem 1.25rem; text-align: center; }
   height: 100%;
   min-height: 0;
   overflow: auto;
-  padding-block: 6rem 3rem;
 }
 .cover.is-overlay[inert] { pointer-events: none; }
-.opening {
+.cover, .opening {
   position: relative;
   isolation: isolate;
   display: grid;
@@ -111,7 +83,7 @@ footer { padding: 3rem 1.25rem; text-align: center; }
   color: var(--ink);
   background: var(--paper);
 }
-.opening::after {
+.cover::after, .opening::after {
   content: '';
   position: absolute;
   inset: clamp(.65rem, 2.4vw, 1.65rem);
@@ -193,77 +165,18 @@ footer { padding: 3rem 1.25rem; text-align: center; }
   --foil: #987440;
   --botanical: url('./assets/botanical.webp');
 }
-.cover, .cover.is-overlay {
-  padding: 0;
-  grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
-  align-items: stretch;
-  background: var(--deep);
-}
-.cover::before { content: none; }
-.cover-portrait {
-  grid-column: 2;
-  grid-row: 1;
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  background: linear-gradient(90deg, #1c271829, transparent 30%), var(--cover-image, none) 51% center / cover, #37402d;
-}
-.cover-portrait::after {
-  content: '';
-  position: absolute;
-  inset: clamp(.75rem, 2vw, 1.65rem);
-  border: 1px solid #e1c99270;
-  pointer-events: none;
-}
 .cover-copy {
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-  position: relative;
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  padding: 6rem 1.9rem 4rem;
-  color: var(--ink);
-  background: radial-gradient(ellipse at 50% 42%, #fffcf3, var(--paper) 70%, #efe2c8);
-  text-shadow: none;
-  isolation: isolate;
+  width: min(100%, 38rem);
+  text-align: center;
 }
-.cover-copy::before {
-  content: '';
-  position: absolute;
-  inset: 1.1rem;
-  border: 1px solid #a6844f7a;
-  outline: 1px solid #a6844f36;
-  outline-offset: .28rem;
-  pointer-events: none;
-}
-.cover-copy::after {
-  content: '';
-  position: absolute;
-  inset: auto auto 0 0;
-  width: min(55%, 20rem);
-  aspect-ratio: 1.3;
-  background: var(--botanical) left bottom / contain no-repeat;
-  opacity: .7;
-  z-index: -1;
-  pointer-events: none;
-}
-.cover .top {
-  z-index: 1;
-  inset: 2rem auto auto 0;
-  width: 43%;
-  justify-content: center;
-  color: var(--ink);
-}
-.cover .eyebrow, .cover .ornament { color: #74562c; }
+.cover .eyebrow { color: #74562c; }
 .cover h1 {
-  font-size: clamp(3.2rem, 7.4vw, 8.25rem);
+  font-size: clamp(3.4rem, 9vw, 8rem);
   font-style: italic;
   overflow-wrap: anywhere;
 }
 .cover-date { margin-block: .95rem .45rem; }
-.cover .recipient { margin-block: .25rem 1.25rem; }
+.cover .recipient { margin-block: 1rem 1.25rem; }
 .cover .recipient strong { font: 600 1.65rem/1.2 var(--serif); overflow-wrap: anywhere; }
 .wedding-seal {
   display: inline-grid;
@@ -323,17 +236,8 @@ footer { padding: 3rem 1.25rem; text-align: center; }
 footer .wedding-seal { color: var(--gold); }
 
 @media (max-width: 670px) {
-  .cover, .cover.is-overlay { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(14rem, 42svh) 1fr; }
-  .cover-portrait { grid-column: 1; background-position: 50% 36%; }
-  .cover-copy { grid-row: 2; padding: 2.1rem 1.55rem 2.25rem; }
-  .cover-copy::before { inset: .65rem; outline-offset: .18rem; }
-  .cover .top { inset: .85rem 1.05rem auto; width: auto; color: var(--ivory); }
-  .cover .top div { background: #1b251ce5; padding: .6rem 1rem; border-radius: 2rem; }
   .cover .wedding-seal { width: 3.2rem; height: 3.2rem; font-size: 1.2rem; margin-bottom: .2rem; }
   .cover .eyebrow { margin-block: .65rem .4rem; }
-  .cover .ornament { font-size: 1.6rem; }
-  .cover-date { margin-block: .65rem .3rem; }
-  .cover .recipient { margin-block: .2rem .8rem; }
 }
 
 .opening-details .intro { margin-bottom: 1rem; }
@@ -393,19 +297,34 @@ footer .wedding-seal { color: var(--gold); }
       #fffaf0fa 20%, #fff8e9ed 67%, #fff8e978 88%, #fff8e900);
   }
 }
-.scene-enter .scene-landscape { animation: landscape-in 1.75s .2s cubic-bezier(.2,.7,.25,1) both; }
-.scene-enter .scene-bough { animation: bough-in 1.25s .42s cubic-bezier(.2,.7,.25,1) both; }
-.scene-enter .scene-blossoms { animation: blossoms-in 1.3s .55s cubic-bezier(.2,.7,.25,1) both; }
-@keyframes landscape-in { from { transform: scale(1.12) translateY(2%); } }
+@media (prefers-reduced-motion: no-preference) {
+  .cover.is-overlay {
+    --landscape-time: 1.65s;
+    --blossom-delay: .55s;
+    --blossom-time: 1.3s;
+    --details-delay: calc(var(--blossom-delay) + var(--blossom-time));
+    --scene-ease: cubic-bezier(.2,.7,.25,1);
+  }
+  .cover.is-overlay .scene-landscape { animation: landscape-in var(--landscape-time) var(--scene-ease) both; }
+  .cover.is-overlay .scene-bough { animation: bough-in 1.25s .36s var(--scene-ease) both; }
+  .cover.is-overlay .scene-blossoms { animation: blossoms-in var(--blossom-time) var(--blossom-delay) var(--scene-ease) both; }
+  .cover.is-overlay .opening-photo::after { animation: center-light .55s 1.25s ease-out both; }
+  .cover.is-overlay .cover-title,
+  .cover.is-overlay .recipient,
+  .cover.is-overlay .cover-actions {
+    animation: details-in .5s var(--details-delay) var(--scene-ease) both;
+  }
+  .cover.is-overlay .recipient { animation-delay: calc(var(--details-delay) + .13s); }
+  .cover.is-overlay .cover-actions { animation-delay: calc(var(--details-delay) + .26s); }
+}
+@keyframes landscape-in { from { opacity: .25; transform: scale(1.16) translateY(4%); } }
 @keyframes bough-in { from { opacity: 0; transform: translate(7%, -9%) rotate(174deg); } }
 @keyframes blossoms-in { from { opacity: 0; transform: translate(-5%, 14%) rotate(-3deg); } }
-
-.cover.is-overlay .cover-portrait { animation: cover-photo-in 1.3s cubic-bezier(.2,.7,.25,1) both; }
-.cover.is-overlay .wedding-seal { animation: seal-in .7s .12s ease-out both; }
-.cover.is-overlay .cover-copy h1 { animation: card-ink-in .85s .15s ease-out both; }
-@keyframes cover-photo-in { from { opacity: .55; scale: 1.025; } }
-@keyframes seal-in { from { opacity: .35; transform: rotate(-11deg) scale(.88); } }
-@keyframes card-ink-in { from { opacity: .55; translate: 0 .4rem; } }
+@keyframes center-light { from { opacity: 0; } }
+@keyframes details-in {
+  from { visibility: hidden; opacity: 0; translate: 0 .55rem; }
+  to { visibility: visible; opacity: 1; translate: 0 0; }
+}
 
 .couple article { position: relative; isolation: isolate; }
 .couple article::after {
@@ -420,9 +339,3 @@ footer .wedding-seal { color: var(--gold); }
   z-index: -1;
 }
 .couple article:nth-child(even)::after { inset: auto 0 0 auto; transform: scaleX(-1); }
-@media (prefers-reduced-motion: reduce) {
-  .cover.is-overlay .cover-portrait,
-  .cover.is-overlay .wedding-seal,
-  .cover.is-overlay .cover-copy h1,
-  .scene-enter .opening-photo > span { animation: none !important; }
-}

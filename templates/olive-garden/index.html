@@ -5,23 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Undangan pernikahan Ayu dan Raka.">
   <title>Undangan Pernikahan</title>
+  <link rel="preload" as="image" href="./templates/olive-garden/assets/garden-landscape.webp">
+  <link rel="preload" as="image" href="./templates/olive-garden/assets/botanical.webp">
   <link rel="stylesheet" href="./templates/olive-garden/style.css">
   <script type="module" src="./templates/olive-garden/invitation.js"></script>
 </head>
 <body>
   <header class="cover" id="sampul">
-    <nav class="top" aria-label="Navigasi undangan">
-      <div><a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">Konfirmasi Kehadiran</a></div>
-    </nav>
-    <div class="cover-portrait" aria-hidden="true"></div>
+    <div class="opening-photo" aria-hidden="true">
+      <span class="scene-landscape"></span>
+      <span class="scene-bough"></span>
+      <span class="scene-blossoms"></span>
+    </div>
     <div class="cover-copy">
-      <span class="wedding-seal" data-initials aria-hidden="true"></span>
-      <p class="eyebrow">Undangan Pernikahan</p>
-      <h1 data-names></h1>
-      <p class="cover-date" data-date></p>
-      <div class="ornament" aria-hidden="true">❧</div>
+      <div class="cover-title">
+        <span class="wedding-seal" data-initials aria-hidden="true"></span>
+        <p class="eyebrow">Undangan Pernikahan</p>
+        <h1 data-names></h1>
+        <p class="cover-date" data-date></p>
+      </div>
       <p class="recipient">Kepada Yth. <strong id="guest">Tamu Undangan</strong></p>
-      <a class="button gold" id="open-invitation" href="#pembuka">Buka Undangan</a>
+      <div class="cover-actions">
+        <a class="button gold" id="open-invitation" href="#pembuka">Buka Undangan</a>
+        <nav class="opening-shortcuts" aria-label="Navigasi undangan">
+          <a href="#jadwal">Jadwal &amp; Lokasi</a><a href="#rsvp">Konfirmasi Kehadiran</a>
+        </nav>
+      </div>
     </div>
   </header>
 
