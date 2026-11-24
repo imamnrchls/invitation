@@ -1,0 +1,93 @@
+:root {
+  --paper: #f8f5eb;
+  --navy: #303b28;
+  --blue: #516044;
+  --blue-deep: #3e5034;
+  --gold: #7c612e;
+  --gold-soft: #e1c992;
+  --ink: #303b28;
+  --muted: #5d624f;
+  --line: #d6c9aa;
+  --deep: #20291d;
+  --cream: #fffdf5;
+  --script: var(--serif);
+  --body: var(--sans);
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+[hidden] { display: none !important; }
+
+body {
+  background: linear-gradient(#20291d26, #20291d77), url('./assets/backdrop.webp') center / cover fixed;
+}
+.stage { box-shadow: 0 0 60px #20291d55; }
+
+.kicker { font-family: var(--sans); font-size: .875rem; font-weight: 700; letter-spacing: .15em; }
+.serif-names, .script-names, .script, .event h3 { font-weight: 600; color: var(--navy); }
+.script { font-size: 2.8rem; }
+.script-names { font-size: clamp(3.2rem, 14vw, 4.8rem); }
+.pill, .send {
+  border: 1px solid var(--gold-soft);
+  border-radius: 3px;
+  color: var(--paper);
+  background: var(--deep);
+  box-shadow: 0 4px 12px #20291d24;
+}
+.pill { letter-spacing: .11em; font-weight: 700; }
+.pill:hover { box-shadow: 0 7px 18px #20291d49; }
+.cover .pill, .hero .pill { background: var(--gold-soft); color: var(--deep); border-color: var(--gold); }
+.pill.small { min-height: 44px; font-size: .75rem; }
+
+.cover, .arch, .oval .photo { background: #eee6d4; }
+.cover-copy { padding-bottom: 14svh; }
+.arch { width: min(46vw, 210px, 29svh); border-color: var(--paper); outline: 1px solid #a88b52; box-shadow: 0 10px 24px #303b2829; }
+.arch.tall { width: min(58%, 240px); }
+.cover-forest { bottom: 0; height: 62%; opacity: .54; }
+.cover-flowers { bottom: -3%; height: 45%; }
+.layer i, .palm i { background-size: 100% 100%; }
+.far { bottom: 28%; aspect-ratio: 960 / 360; }
+.near { bottom: 18%; aspect-ratio: 960 / 385; }
+.forest { bottom: 0; aspect-ratio: 960 / 680; }
+.palm { bottom: 10%; width: 35%; aspect-ratio: 238 / 480; }
+.palm.left { left: -10%; }
+.palm.right { right: -10%; }
+.laces svg { color: #a18448; filter: drop-shadow(0 0 4px var(--cream)); }
+.birds svg { color: var(--olive, #46523b); }
+.hero-inner { padding: .9rem 1.15rem; background: radial-gradient(ellipse, #fffdf5e8, #fffdf5b3 55%, transparent 76%); }
+
+.with-love { background: linear-gradient(#eee6d4, var(--paper) 55%); }
+.couple-section { background: linear-gradient(var(--paper), #eee6d4); }
+.couple-section::after { opacity: .28; }
+.partner h3, .chapter h3 { color: var(--navy); }
+.social { background: var(--blue-deep); }
+.save-title { color: #fff; text-shadow: 0 2px 18px var(--deep); }
+.save-photo::after { background: linear-gradient(transparent 20%, #20291d88 80%); }
+.countdown div { background: var(--cream); border: 1px solid var(--line); box-shadow: 0 6px 16px #20291d30; }
+
+.blue-band { background: linear-gradient(#303b28f5, #20291df5), url('./assets/backdrop.webp') center / cover; }
+.band-lede { color: var(--paper); }
+.frame-card { background: #f8f5eb13; border-color: #e1c992ac; box-shadow: 0 16px 35px #20291d50; border-radius: 18px; }
+.panel, .glass-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px #20291d20;
+  border-radius: 12px;
+}
+.event hr { border-color: var(--line); opacity: 1; }
+.event .time { font-weight: 700; font-variant-numeric: tabular-nums; }
+.event .cal { font-size: .78rem; }
+.bank-card, .address-card { background: linear-gradient(135deg, var(--cream), #e8dfc7); border-color: var(--line); box-shadow: 0 8px 20px #20291d21; }
+.bank-card .number, .bank-card .holder, .address-card strong, .address-card svg { color: var(--deep); }
+.copy { background: var(--blue-deep); }
+#reply input, #reply textarea, #reply select { border-color: #92896e; background: var(--cream); font-size: 1rem; }
+#reply select:invalid { color: var(--muted); }
+.wishes li { border-color: var(--line); }
+.wishes .who svg, .wishes time { color: var(--muted); }
+
+.story, .gallery-section { background: var(--paper); }
+.story-photo, .gallery a { background: var(--cream); box-shadow: 0 8px 24px #20291d26; }
+.closing { padding-bottom: min(62vw, 290px); }
+.c-forest { aspect-ratio: 960 / 680; }
+.music { background: var(--deep); color: var(--paper); border-color: var(--gold-soft); }
+.viewer { background: var(--deep); }
+.viewer::backdrop { background: #20291de0; }
