@@ -731,3 +731,10 @@ body.opened .hero-inner > * { animation: olive-title-in var(--t-title) calc(var(
 .wishes p { margin-top: .3rem; font: italic 500 1.05rem/1.45 var(--serif); color: var(--ink); overflow-wrap: anywhere; }
 .wishes time { margin-top: .4rem; font-size: .68rem; letter-spacing: .04em; }
 .wishes .empty { display: block; padding: 1.2rem 0 0; font: italic 500 1rem/1.4 var(--serif); }
+
+/* ---------- credit ---------- */
+.credit { position: relative; padding: 2rem 1rem calc(4.6rem + env(safe-area-inset-bottom)); text-align: center; background: linear-gradient(180deg, var(--blue-deep), var(--deep)); }
+.credit p { margin: 0; font: 500 .7rem/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: rgba(255, 253, 245, .75); }
+.credit .credit-by { margin-top: .5rem; }
+.credit a { font-weight: 600; color: var(--gold-soft); text-decoration: none; border-bottom: 1px solid rgba(225, 201, 146, .4); }
+.credit a:hover { border-color: var(--gold-soft); }
